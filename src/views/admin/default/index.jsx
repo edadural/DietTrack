@@ -16,38 +16,11 @@ import TaskCard from "views/admin/default/components/TaskCard";
 import tableDataCheck from "./variables/tableDataCheck.json";
 import tableDataComplex from "./variables/tableDataComplex.json";
 import RecentAppointments from "./components/RecentAppointments";
+import RecentActivities from "./components/RecentActivities";
 
 const Dashboard = () => {
   return (
     <div>
-
-      {/* Recent Appointments */}
-      <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-3">
-        <div>
-          <RecentAppointments />
-        </div>
-      </div>
-
-      <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-2">
-
-        {/* Complex Table , Task & Calendar */}
-
-        <ComplexTable
-          columnsData={columnsDataComplex}
-          tableData={tableDataComplex}
-        />
-
-        {/* Task chart & Calendar */}
-
-        <div className="grid grid-cols-1 gap-5 rounded-[20px] md:grid-cols-2">
-          <TaskCard />
-          <div className="grid grid-cols-1 rounded-[20px]">
-            <MiniCalendar />
-          </div>
-        </div>
-      </div>
-
-      {/* Card widget */}
 
       <div className="mt-3 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
         <Widget
@@ -72,29 +45,10 @@ const Dashboard = () => {
         />
       </div>
 
-      {/* Charts */}
-
-      <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
-        <TotalSpent />
-        <WeeklyRevenue />
-      </div>
-
-      {/* Tables & Charts */}
-
-      <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-2">
-        {/* Check Table */}
-        <div>
-          <CheckTable
-            columnsData={columnsDataCheck}
-            tableData={tableDataCheck}
-          />
-        </div>
-
-        {/* Traffic chart & Pie Chart */}
-
-        <div className="grid grid-cols-1 gap-5 rounded-[20px] md:grid-cols-2">
-          <DailyTraffic />
-          <PieChartCard />
+      <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-3">
+        <RecentAppointments />
+        <div className="grid col-span-2">
+          <RecentActivities />
         </div>
       </div>
 

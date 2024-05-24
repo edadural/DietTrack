@@ -3,6 +3,10 @@ import React from "react";
 // Admin Imports
 import MainDashboard from "views/admin/default";
 import Fallow from "views/admin/fallow";
+import Calendar from "views/admin/calendar";
+import DailyPlanAdmin from "views/admin/dailyPlan";
+import UserList from "views/admin/userList";
+import UserFallow from "views/admin/userFallow";
 import NFTMarketplace from "views/admin/marketplace";
 import Profile from "views/admin/profile";
 import DataTables from "views/admin/tables";
@@ -22,41 +26,69 @@ import {
 
 const routes = [
   {
-    name: "Main Dashboard",
+    name: "Anasayfa",
     layout: "/admin",
     path: "default",
     icon: <MdHome className="h-6 w-6" />,
     component: <MainDashboard />,
   },
+  // {
+  //   name: "Notlar",
+  //   layout: "/admin",
+  //   path: "fallow",
+  //   icon: <MdPerson className="h-6 w-6" />,
+  //   component: <Fallow />,
+  // },
+  {
+    name: "Takvim",
+    layout: "/admin",
+    path: "calendar",
+    icon: <MdBarChart className="h-6 w-6" />,
+    component: <Calendar />,
+  },
+  {
+    name: "Günlük Beslenme",
+    layout: "/admin",
+    path: "dailyPlan",
+    icon: <MdBarChart className="h-6 w-6" />,
+    component: <DailyPlanAdmin />,
+  },
+  {
+    name: "Danışan Listesi",
+    layout: "/admin",
+    path: "userList",
+    icon: <MdBarChart className="h-6 w-6" />,
+    component: <UserList />,
+  },
   {
     name: "Danışan Takip",
     layout: "/admin",
-    path: "fallow",
+    path: "userFallow",
     icon: <MdBarChart className="h-6 w-6" />,
-    component: <Fallow />,
+    component: <UserFallow />,
   },
-  {
-    name: "NFT Marketplace",
-    layout: "/admin",
-    path: "nft-marketplace",
-    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
-    component: <NFTMarketplace />,
-    secondary: true,
-  },
-  {
-    name: "Data Tables",
-    layout: "/admin",
-    icon: <MdBarChart className="h-6 w-6" />,
-    path: "data-tables",
-    component: <DataTables />,
-  },
-  {
-    name: "Profile",
-    layout: "/admin",
-    path: "profile",
-    icon: <MdPerson className="h-6 w-6" />,
-    component: <Profile />,
-  },
+  // {
+  //   name: "NFT Marketplace",
+  //   layout: "/admin",
+  //   path: "nft-marketplace",
+  //   icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+  //   component: <NFTMarketplace />,
+  //   secondary: true,
+  // },
+  // {
+  //   name: "Data Tables",
+  //   layout: "/admin",
+  //   icon: <MdBarChart className="h-6 w-6" />,
+  //   path: "data-tables",
+  //   component: <DataTables />,
+  // },
+  // {
+  //   name: "Profile",
+  //   layout: "/admin",
+  //   path: "profile",
+  //   icon: <MdPerson className="h-6 w-6" />,
+  //   component: <Profile />,
+  // },
   {
     name: "Sign In",
     layout: "/auth",
@@ -64,12 +96,13 @@ const routes = [
     icon: <MdLock className="h-6 w-6" />,
     component: <SignIn />,
   },
-  {
-    name: "RTL Admin",
-    layout: "/rtl",
-    path: "rtl",
-    icon: <MdHome className="h-6 w-6" />,
-    component: <RTLDefault />,
-  },
+  // {
+  //   name: "RTL Admin",
+  //   layout: "/rtl",
+  //   path: "rtl",
+  //   icon: <MdHome className="h-6 w-6" />,
+  //   component: <RTLDefault />,
+  // },
 ];
+
 export default routes;

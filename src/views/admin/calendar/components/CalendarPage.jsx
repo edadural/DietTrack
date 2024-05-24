@@ -10,8 +10,8 @@ Modal.setAppElement('#root');
 
 const CalendarPage = () => {
     const [events, setEvents] = useState([
-        { id: 1, title: 'Etkinlik 1', date: '2024-05-20T10:00:00' },
-        { id: 2, title: 'Etkinlik 2', start: '2024-05-23T14:00:00', end: '2024-05-25T18:00:00' },
+        { id: 1, title: 'Asd', date: '2024-05-20T10:00:00' },
+        { id: 2, title: 'Wet', start: '2024-05-23T14:00:00', end: '2024-05-25T18:00:00' },
     ]);
 
     const [selectedEvent, setSelectedEvent] = useState(null);
@@ -51,7 +51,13 @@ const CalendarPage = () => {
     };
 
     const handleDeleteEvent = () => {
-        setEvents(events.filter(event => event.id !== selectedEvent.id));
+        console.log(selectedEvent);
+        console.log(selectedEvent._def.publicId);
+        console.log(events[0].id);
+        const aa = events.filter(event => event.id !== selectedEvent._def.publicId)
+        console.log(aa);
+        // setEvents();
+        console.log(events);
         closeModal();
     };
 
@@ -71,7 +77,7 @@ const CalendarPage = () => {
         <div style={{ maxWidth: '900px', margin: 'auto' }}>
             <div className='flex justify-between'>
                 <button onClick={openCreateModal} className='bg-blueSecondary text-white p-3 rounded-full '>
-                    Etkinlik Ekle
+                    Randevu Ekle
                 </button>
                 <div>
                     <button onClick={() => handleViewChange('month')} className='bg-blue-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-blue-600 focus:outline-none focus:ring-blue-500'>Ay</button>
@@ -92,17 +98,17 @@ const CalendarPage = () => {
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
-                contentLabel={isCreateModal ? "Etkinlik Ekle Modal" : "Etkinlik Detayları Modal"}
+                contentLabel={isCreateModal ? "Randevu Ekle Modal" : "Randevu Detayları Modal"}
                 className="ReactModal__Content bg-white shadow-lg rounded-lg overflow-hidden relative"
             >
                 <div className="p-6">
                     {isCreateModal ? (
                         <div>
-                            <h2 className="text-lg font-bold mb-4">Etkinlik Ekle</h2>
+                            <h2 className="text-lg font-bold mb-4">Randevu Ekle</h2>
                             <form onSubmit={handleAddEvent}>
                                 <div className="mb-4">
                                     <label className="block text-gray-700 font-bold mb-2" htmlFor="title">
-                                        Etkinlik Adı:
+                                        Randevu Adı:
                                     </label>
                                     <input
                                         type="text"
@@ -130,7 +136,7 @@ const CalendarPage = () => {
                                 </div>
                                 <div className="flex justify-between mt-4">
                                     <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-blue-500">
-                                        Etkinlik Ekle
+                                        Randevu Ekle
                                     </button>
                                     <button
                                         type="button"
@@ -142,7 +148,7 @@ const CalendarPage = () => {
                         </div>
                     ) : (
                         <div>
-                            <h2 className="text-lg font-bold mb-4">Etkinlik Detayları</h2>
+                            <h2 className="text-lg font-bold mb-4">Randevu Detayları</h2>
                             {selectedEvent && (
                                 <div>
                                     <p><strong>İsim:</strong> {selectedEvent.title}</p>

@@ -14,7 +14,9 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@fullcalendar/daygrid": "^6.1.12",
+    "@fullcalendar/interaction": "^6.1.12",
     "@fullcalendar/react": "^6.1.12",
+    "@fullcalendar/timegrid": "^6.1.13",
     "@mui/material": "^5.15.18",
     "@syncfusion/ej2-react-calendars": "^25.2.5",
     "@syncfusion/ej2-react-schedule": "^25.2.4",
@@ -65,6 +67,6 @@
     "postcss": "^8.4.16",
     "prettier": "^2.8.3",
     "prettier-plugin-tailwindcss": "^0.2.1",
-    "tailwindcss": "^3.1.8"
+    "tailwindcss": "^3.4.3"
   }
 }

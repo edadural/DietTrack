@@ -1,5 +1,5 @@
-// import CalendarPage from "./components/CalendarPage";
-import RecentActivities from "./components/RecentActivities";
+import CalendarPage from "./components/CalendarPage";
+// import RecentActivities from "./components/RecentActivities";
 // import RecentAppointments from "./components/RecentAppointments";
 
 const Dashboard = () => {
@@ -12,17 +12,17 @@ const Dashboard = () => {
         </div>
       </div> */}
 
-      <div className="mt-5 grid grid-cols-1 gap-5 ">
+      {/* <div className="mt-5 grid grid-cols-1 gap-5 ">
         <div>
           <RecentActivities />
         </div>
-      </div>
+      </div> */}
 
-      {/* <div className="mt-5 grid grid-cols-1 gap-5 ">
+      <div className="mt-5 grid grid-cols-1 gap-5 ">
         <div>
           <CalendarPage />
         </div>
-      </div> */}
+      </div>
 
     </div>
   );

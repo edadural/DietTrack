@@ -1,27 +1,31 @@
 export const columnsDataDevelopment = [
   {
+    Header: "NO",
+    accessor: "user_id",
+  },
+  {
     Header: "KULLANICI",
-    accessor: "name",
+    accessor: "k_adi",
+  },
+  {
+    Header: "AD",
+    accessor: "ad",
+  },
+  {
+    Header: "SOYAD",
+    accessor: "soyad",
   },
   {
     Header: "EMAIL",
-    accessor: "email",
+    accessor: "e_posta",
   },
   {
-    Header: "PASSWORD",
-    accessor: "password",
-  },
-  {
-    Header: "TELEFON NUMARASI",
-    accessor: "phone",
+    Header: "TELEFON",
+    accessor: "telf",
   },
   {
     Header: "KAYIT TARİHİ",
-    accessor: "date",
-  },
-  {
-    Header: "PROGRESS",
-    accessor: "progress",
-  },
+    accessor: "giris_tarih",
+  }
 ];
 

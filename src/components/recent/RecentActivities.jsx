@@ -92,7 +92,7 @@ const RecentActivities = () => {
             },
             date: 'Yesterday',
             time: '3.20 PM',
-            title: 'Dr. Linda Carpenter',
+            title: 'Catherine Manseau',
             description: 'Doctors Meeting',
         },
         {
@@ -103,12 +103,12 @@ const RecentActivities = () => {
             },
             date: '05 Sep 2022',
             time: '1.20 PM',
-            title: 'Dr.Markhay smith',
+            title: 'Bernardo Galaviz',
             description: 'was Completed the Operation With in Deadline',
         },
         {
             user: {
-                name: 'Mike Litorus',
+                name: 'Rio Williams',
                 // profileUrl: 'profile.html',
                 avatar: avatar5
             },
@@ -120,8 +120,8 @@ const RecentActivities = () => {
     ];
 
     return (
-        <div className="container mx-auto p-4">
-            <div className="bg-white rounded-lg shadow-md">
+        <div className="container mx-auto">
+            <div className="bg-white rounded-3xl shadow-md">
                 <div className="p-6">
                     <div className="relative">
                         <ul className="list-none m-0 p-0 relative">

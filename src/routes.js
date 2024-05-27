@@ -10,10 +10,12 @@ import UserFallow from "views/admin/userFallow";
 import NFTMarketplace from "views/admin/marketplace";
 import Profile from "views/admin/profile";
 import DataTables from "views/admin/tables";
+import Notes from "views/admin/notes";
 import RTLDefault from "views/rtl/default";
 
 // Auth Imports
 import SignIn from "views/auth/SignIn";
+import SignInAdmin from "views/auth/SignInAdmin";
 
 // Icon Imports
 import {
@@ -32,13 +34,13 @@ const routes = [
     icon: <MdHome className="h-6 w-6" />,
     component: <MainDashboard />,
   },
-  // {
-  //   name: "Notlar",
-  //   layout: "/admin",
-  //   path: "fallow",
-  //   icon: <MdPerson className="h-6 w-6" />,
-  //   component: <Fallow />,
-  // },
+  {
+    name: "Notlar",
+    layout: "/admin",
+    path: "all-notes",
+    icon: <MdPerson className="h-6 w-6" />,
+    component: <Notes />,
+  },
   {
     name: "Takvim",
     layout: "/admin",
@@ -90,11 +92,18 @@ const routes = [
   //   component: <Profile />,
   // },
   {
-    name: "Sign In",
+    name: "Giriş Yap",
     layout: "/auth",
     path: "sign-in",
     icon: <MdLock className="h-6 w-6" />,
     component: <SignIn />,
+  },
+  {
+    name: "Giriş Yap Admin",
+    layout: "/auth",
+    path: "sign-in-admin",
+    icon: <MdLock className="h-6 w-6" />,
+    component: <SignInAdmin />,
   },
   // {
   //   name: "RTL Admin",

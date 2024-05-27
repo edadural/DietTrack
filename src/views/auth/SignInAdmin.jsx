@@ -4,7 +4,7 @@ import InputField from "components/fields/InputField";
 import Checkbox from "components/checkbox";
 import { appAxios } from "helper/appAxios";
 
-export default function SignIn() {
+export default function SignInAdmin() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -12,7 +12,7 @@ export default function SignIn() {
   const handleSubmit = (e) => {
     e.preventDefault();
     appAxios
-      .post("auth/user-login", {
+      .post("auth/admin-login", {
         username: username,
         password: password
       })
@@ -20,25 +20,25 @@ export default function SignIn() {
         if (response.data.status) {
           localStorage.setItem("token", response.data.data.token);
           localStorage.setItem("username", response.data.data.username);
-          navigate("/user/default");
+          navigate("/admin/default");
         }
       })
       .catch((err) => { });
   };
 
   return (
-    <div className="mb-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
+    <div className="flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
       {/* Sign in section */}
       <div className="mt-[10vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
         <h4 className="mb-5 text-4xl font-bold text-navy-700 dark:text-white text-center">
-          Giriş Yap
+          Giriş Yap / Admin
         </h4>
         <form onSubmit={handleSubmit}>
           {/* username */}
           <InputField
             variant="auth"
             extra="mb-3"
-            label="Kullanıcı adı*"
+            label="Kullanıcı Adı*"
             id="username"
             type="text"
             value={username}

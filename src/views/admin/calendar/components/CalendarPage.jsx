@@ -11,7 +11,7 @@ Modal.setAppElement('#root');
 const CalendarPage = () => {
     const [events, setEvents] = useState([
         { id: 1, title: 'Asd', date: '2024-05-20T10:00:00' },
-        { id: 2, title: 'Wet', start: '2024-05-23T14:00:00', end: '2024-05-25T18:00:00' },
+        { id: 2, title: 'Wet', start: '2024-05-23T14:00:00', end: '2024-05-23T18:00:00' },
     ]);
 
     const [selectedEvent, setSelectedEvent] = useState(null);
@@ -51,13 +51,7 @@ const CalendarPage = () => {
     };
 
     const handleDeleteEvent = () => {
-        console.log(selectedEvent);
-        console.log(selectedEvent._def.publicId);
-        console.log(events[0].id);
-        const aa = events.filter(event => event.id !== selectedEvent._def.publicId)
-        console.log(aa);
-        // setEvents();
-        console.log(events);
+        setEvents(events.filter(event => event.id !== parseInt(selectedEvent.id)));
         closeModal();
     };
 
@@ -75,14 +69,17 @@ const CalendarPage = () => {
 
     return (
         <div style={{ maxWidth: '900px', margin: 'auto' }}>
-            <div className='flex justify-between'>
-                <button onClick={openCreateModal} className='bg-blueSecondary text-white p-3 rounded-full '>
+            <div className='flex justify-between mb-4'>
+                <button
+                    onClick={openCreateModal}
+                    className='flex items-center text-xl hover:cursor-pointer text-lightPrimary p-2 bg-brand-500 hover:bg-brand-200 dark:bg-navy-700 dark:text-white dark:hover:bg-white/20 dark:active:bg-white/10 linear justify-center rounded-lg font-bold transition duration-200'
+                >
                     Randevu Ekle
                 </button>
                 <div>
-                    <button onClick={() => handleViewChange('month')} className='bg-blue-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-blue-600 focus:outline-none focus:ring-blue-500'>Ay</button>
-                    <button onClick={() => handleViewChange('week')} className='bg-blue-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-blue-600 focus:outline-none focus:ring-blue-500'>Hafta</button>
-                    <button onClick={() => handleViewChange('day')} className='bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-blue-500'>Gün</button>
+                    <button onClick={() => handleViewChange('month')} className='bg-gray-800 text-white px-4 py-2 rounded-md mr-2 hover:bg-gray-700 focus:outline-none focus:ring-blue-500'>Ay</button>
+                    <button onClick={() => handleViewChange('week')} className='bg-gray-800 text-white px-4 py-2 rounded-md mr-2 hover:bg-gray-700 focus:outline-none focus:ring-blue-500'>Hafta</button>
+                    <button onClick={() => handleViewChange('day')} className='bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-blue-500'>Gün</button>
                 </div>
             </div>
             <FullCalendar
@@ -98,85 +95,85 @@ const CalendarPage = () => {
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
-                contentLabel={isCreateModal ? "Randevu Ekle Modal" : "Randevu Detayları Modal"}
-                className="ReactModal__Content bg-white shadow-lg rounded-lg overflow-hidden relative"
+                contentLabel={isCreateModal ? "Randevu Ekle" : "Randevu Detayları"}
+                className="ReactModal__Content bg-white shadow-lg rounded-lg overflow-hidden relative p-6 w-1/3 mx-auto"
+                overlayClassName="ReactModal__Overlay flex items-center justify-center fixed inset-0 bg-black bg-opacity-50"
             >
-                <div className="p-6">
-                    {isCreateModal ? (
-                        <div>
-                            <h2 className="text-lg font-bold mb-4">Randevu Ekle</h2>
-                            <form onSubmit={handleAddEvent}>
-                                <div className="mb-4">
-                                    <label className="block text-gray-700 font-bold mb-2" htmlFor="title">
-                                        Randevu Adı:
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="title"
-                                        name="title"
-                                        value={newEvent.title}
-                                        onChange={handleInputChange}
-                                        required
-                                        className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                                    />
-                                </div>
-                                <div className="mb-4">
-                                    <label className="block text-gray-700 font-bold mb-2" htmlFor="dateTime">
-                                        Tarih ve Saat:
-                                    </label>
-                                    <input
-                                        type="datetime-local"
-                                        id="dateTime"
-                                        name="dateTime"
-                                        value={newEvent.dateTime}
-                                        onChange={handleInputChange}
-                                        required
-                                        className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                                    />
-                                </div>
-                                <div className="flex justify-between mt-4">
-                                    <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-blue-500">
-                                        Randevu Ekle
-                                    </button>
-                                    <button
-                                        type="button"
-                                        onClick={closeModal}
-                                        className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-gray-500"
-                                    >İptal</button>
-                                </div>
-                            </form>
-                        </div>
-                    ) : (
-                        <div>
-                            <h2 className="text-lg font-bold mb-4">Randevu Detayları</h2>
-                            {selectedEvent && (
-                                <div>
-                                    <p><strong>İsim:</strong> {selectedEvent.title}</p>
-                                    <p><strong>Tarih:</strong> {selectedEvent.start ? selectedEvent.start.toDateString() : selectedEvent.date}</p>
-                                    {selectedEvent.start && (
-                                        <p><strong>Saat:</strong> {selectedEvent.start.toLocaleTimeString()}</p>
-                                    )}
-                                </div>
-                            )}
+                {isCreateModal ? (
+                    <div>
+                        <h2 className="text-xl font-bold mb-4 text-center">Randevu Ekle</h2>
+                        <form onSubmit={handleAddEvent}>
+                            <div className="mb-4">
+                                <label className="block text-gray-700 font-bold mb-2" htmlFor="title">
+                                    Randevu Adı:
+                                </label>
+                                <input
+                                    type="text"
+                                    id="title"
+                                    name="title"
+                                    value={newEvent.title}
+                                    onChange={handleInputChange}
+                                    required
+                                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-gray-700 font-bold mb-2" htmlFor="dateTime">
+                                    Tarih ve Saat:
+                                </label>
+                                <input
+                                    type="datetime-local"
+                                    id="dateTime"
+                                    name="dateTime"
+                                    value={newEvent.dateTime}
+                                    onChange={handleInputChange}
+                                    required
+                                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                />
+                            </div>
+                            <div className="flex justify-between mt-4">
+                                <button type="submit" className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-blue-500">
+                                    Ekle
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={closeModal}
+                                    className="bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-gray-500"
+                                >İptal</button>
+                            </div>
+                        </form>
+                    </div>
+                ) : (
+                    <div>
+                        <h2 className="text-xl font-bold mb-4 text-center">Randevu Detayları</h2>
+                        {selectedEvent && (
+                            <div>
+                                <p className="mb-2"><strong>İsim:</strong> {selectedEvent.title}</p>
+                                <p className="mb-2"><strong>Tarih:</strong> {selectedEvent.start ? selectedEvent.start.toDateString() : selectedEvent.date}</p>
+                                {selectedEvent.start && (
+                                    <p className="mb-2"><strong>Saat:</strong> {selectedEvent.start.toLocaleTimeString()}</p>
+                                )}
+                            </div>
+                        )}
+                        <div className="flex justify-between mt-4">
                             <button
                                 onClick={handleDeleteEvent}
-                                className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-red-500 mt-4 mr-4"
+                                className="bg-red-500 text-white px-6 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-red-500"
                             >
                                 Sil
                             </button>
                             <button
                                 onClick={closeModal}
-                                className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-gray-500 mt-4"
+                                className="bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-gray-500"
                             >
                                 Kapat
                             </button>
                         </div>
-                    )}
-                </div>
+                    </div>
+                )}
             </Modal>
         </div>
     );
 };
 
 export default CalendarPage;
-

@@ -10,7 +10,7 @@ const MiniCalendar = () => {
   const [value, onChange] = useState(new Date());
   const [events, setEvents] = useState([
     {
-      date: new Date(2024, 4, 25),
+      date: new Date(2024, 4, 23),
       title: "Randevu Hatırlatma",
       description: "Haftalık beslenme kontrolu",
     },

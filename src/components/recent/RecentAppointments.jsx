@@ -17,7 +17,7 @@ const AppointmentCard = ({ time, appointments }) => {
                                     <i className="fas fa-circle text-xs mr-2 text-gray-800"></i>{appointment.time} <span className="ml-4 text-gray-500 text-xs">{appointment.name}</span>
                                 </li>
                             ) : (
-                                <li className={`flex items-center ${appointment.completed ? 'text-gray-500' : 'text-gray-800'}`}>
+                                <li className={`flex items-center ${appointment.completed ? 'text-gray-500 line-through' : 'text-gray-800'}`}>
                                     <i className="fas fa-circle text-xs mr-2"></i>{appointment.time} <span className="ml-4 text-gray-500 text-xs">{appointment.name}</span>
                                 </li>
                             )}
@@ -61,10 +61,17 @@ const RecentAppointments = () => {
             ]
         },
         {
-            time: '11:00',
+            time: '13:00',
             appointments: [
-                { time: '11:00', name: 'Cristina Groves' },
-                { time: '11:30', name: 'Benjamin Bruklin' }
+                { time: '13:00', name: 'Cristina Groves' },
+                { time: '13:30', name: 'Benjamin Bruklin' }
+            ]
+        },
+        {
+            time: '14:00',
+            appointments: [
+                { time: '14:00', name: 'Cristina Groves' },
+                { time: '14:30', name: 'Benjamin Bruklin' }
             ]
         }
     ];

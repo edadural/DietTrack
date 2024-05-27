@@ -1,6 +1,7 @@
 // import CalendarPage from "./components/CalendarPage";
-import RecentActivities from "./components/RecentActivities";
 // import RecentAppointments from "./components/RecentAppointments";
+
+import RecentActivities from "components/recent/RecentActivities";
 
 const Dashboard = () => {
   return (

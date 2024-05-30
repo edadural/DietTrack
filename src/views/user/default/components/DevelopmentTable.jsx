@@ -1,8 +1,4 @@
-import CardMenu from "components/card/CardMenu";
 import Card from "components/card";
-import { DiApple } from "react-icons/di";
-import { DiAndroid } from "react-icons/di";
-import { DiWindows } from "react-icons/di";
 
 import React, { useMemo } from "react";
 import {
@@ -43,15 +39,14 @@ const DevelopmentTable = (props) => {
     <Card extra={"w-full h-full p-4"}>
       <div className="relative flex items-center justify-between">
         <div className="text-xl font-bold text-navy-700 dark:text-white">
-          Development Table
+          Genel Bilgiler
         </div>
-        <CardMenu />
       </div>
 
       <div className="h-full overflow-x-scroll xl:overflow-x-hidden">
         <table
           {...getTableProps()}
-          className="mt-8 h-max w-full"
+          className="mt-8 h-max w-full border text-center"
           variant="simple"
           color="gray-500"
           mb="24px"
@@ -62,7 +57,7 @@ const DevelopmentTable = (props) => {
                 {headerGroup.headers.map((column, index) => (
                   <th
                     {...column.getHeaderProps(column.getSortByToggleProps())}
-                    className="border-b border-gray-200 pr-32 pb-[10px] text-start dark:!border-navy-700 "
+                    className="border-gray-200 p-3 text-center dark:!border-navy-700 border bg-gray-50"
                     key={index}
                   >
                     <div className="text-xs font-bold tracking-wide text-gray-600">
@@ -77,16 +72,16 @@ const DevelopmentTable = (props) => {
             {page.map((row, index) => {
               prepareRow(row);
               return (
-                <tr {...row.getRowProps()} key={index}>
+                <tr className="border" {...row.getRowProps()} key={index}>
                   {row.cells.map((cell, index) => {
                     let data = "";
-                    if (cell.column.Header === "NAME") {
+                    if (cell.column.Header === "ÖLÇÜM TARİHİ") {
                       data = (
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
                           {cell.value}
                         </p>
                       );
-                    } else if (cell.column.Header === "DATE") {
+                    } else if (cell.column.Header === "AĞIRLIK") {
                       data = (
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
                           {cell.value}
@@ -94,7 +89,7 @@ const DevelopmentTable = (props) => {
                       );
                     } else if (cell.column.Header === "PROGRESS") {
                       data = (
-                        <div className="flex items-center gap-3">
+                        <div className="flex justify-center items-center gap-3">
                           <p className="text-sm font-bold text-navy-700 dark:text-white">
                             {cell.value}%
                           </p>
@@ -106,7 +101,7 @@ const DevelopmentTable = (props) => {
                       <td
                         {...cell.getCellProps()}
                         key={index}
-                        className="pt-[14px] pb-3 text-[14px]"
+                        className="pt-[14px] pb-3 text-[14px] border"
                       >
                         {data}
                       </td>

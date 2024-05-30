@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   columnsDataDevelopment,
 } from "./variables/columnsData";
@@ -6,7 +6,7 @@ import DevelopmentTable from "./components/DevelopmentTable";
 import { appAxios } from 'helper/appAxios';
 
 const Tables = () => {
-const [datas, setDatas] = useState([])
+  const [datas, setDatas] = useState([])
 
   useEffect(() => {
     appAxios

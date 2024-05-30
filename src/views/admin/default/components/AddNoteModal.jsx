@@ -5,7 +5,7 @@ const AddNoteModal = ({ show, onClose, onSave, newNote, handleInputChange, clien
 
     return (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 z-50 overflow-y-auto h-full w-full pt-10">
-            <div className="relative top-20 mx-auto p-5 border w-1/3 shadow-lg rounded-md bg-white">
+            <div className="relative top-20 mx-auto p-5 border md:w-1/3 shadow-lg rounded-md bg-white">
                 <h2 className="text-2xl mb-4">Yeni Not Ekle</h2>
                 <div className="mb-4">
                     <label className="block text-gray-700">Danışan</label>

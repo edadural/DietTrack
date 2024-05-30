@@ -1,10 +1,10 @@
 export const columnsDataDevelopment = [
   {
-    Header: "NAME",
+    Header: "ÖLÇÜM TARİHİ",
     accessor: "name",
   },
   {
-    Header: "DATE",
+    Header: "AĞIRLIK",
     accessor: "date",
   },
   {

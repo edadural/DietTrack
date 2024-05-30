@@ -258,14 +258,19 @@ export const barChartOptionsWeeklyRevenue = {
 
 export const lineChartDataTotalSpent = [
   {
-    name: "Revenue",
+    name: "Kilo",
     data: [50, 64, 48, 66, 49, 68],
     color: "#4318FF",
   },
   {
-    name: "Profit",
+    name: "Yağ Kaybı",
     data: [30, 40, 24, 46, 20, 46],
     color: "#6AD2FF",
+  },
+  {
+    name: "Sıvı Kaybı",
+    data: [10, 2, 3, 2, 10, 6],
+    color: "#EDAEDA",
   },
 ];
 
@@ -322,7 +327,7 @@ export const lineChartOptionsTotalSpent = {
     },
     type: "text",
     range: undefined,
-    categories: ["SEP", "OCT", "NOV", "DEC", "JAN", "FEB"],
+    categories: ["1.hafta", "2.hafta", "3.hafta", "4.hafta", "5.hafta", "6.hafta"],
   },
 
   yaxis: {

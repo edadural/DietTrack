@@ -99,7 +99,7 @@ const routes = [
     component: <SignIn />,
   },
   {
-    name: "Giriş Yap Admin",
+    name: "Giriş Yap - Admin",
     layout: "/auth",
     path: "sign-in-admin",
     icon: <MdLock className="h-6 w-6" />,

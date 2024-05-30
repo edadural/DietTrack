@@ -91,43 +91,43 @@ const ClientNotes = () => {
     ];
 
     return (
-        <div className="container mx-auto">
-            <div className="bg-white rounded-3xl shadow-md p-6">
-                <div className="flex justify-between mb-3">
-                    <h1 className="text-3xl font-bold">Danışan Notları</h1>
-                    <div className="flex justify-end gap-2">
-                        <button
-                            onClick={() => setShowModal(true)}
-                            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-                        >
-                            Not Ekle
-                        </button>
-                        <button
-                            onClick={() => navigate('/admin/all-notes')}
-                            className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600"
-                        >
-                            Tüm Notlar
-                        </button>
-                    </div>
-                </div>
-                <div className="relative">
-                    <ul className="list-none m-0 p-0 relative z-10">
-                        {lastThreeNotes.map((note, index) => (
-                            <ClientNoteItem key={index} {...note} />
-                        ))}
-                    </ul>
-                    <div className="absolute top-3 left-6 w-0.5 bg-indigo-100 h-full -z-0"></div>
-                </div>
+      <div className="container mx-auto">
+        <div className="rounded-3xl bg-white p-6 shadow-md">
+          <div className="mb-3 flex justify-between">
+            <h1 className="md:text-2xl text-xl font-bold">Danışan Notları</h1>
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={() => setShowModal(true)}
+                className="rounded-md bg-blue-600 md:px-4 md:py-2 px-2 text-sm text-white hover:bg-blue-500 md:text-base"
+              >
+                Not Ekle
+              </button>
+              <button
+                onClick={() => navigate("/admin/all-notes")}
+                className="rounded-md bg-gray-500 md:px-4 md:py-2 px-2 text-sm text-white hover:bg-gray-600 md:text-base"
+              >
+                Tüm Notlar
+              </button>
             </div>
-            <AddNoteModal
-                show={showModal}
-                onClose={() => setShowModal(false)}
-                onSave={handleAddNote}
-                newNote={newNote}
-                handleInputChange={handleInputChange}
-                clients={clients}
-            />
+          </div>
+          <div className="relative">
+            <ul className="relative z-10 m-0 list-none p-0">
+              {lastThreeNotes.map((note, index) => (
+                <ClientNoteItem key={index} {...note} />
+              ))}
+            </ul>
+            <div className="absolute left-6 top-3 -z-0 h-full w-0.5 bg-indigo-100"></div>
+          </div>
         </div>
+        <AddNoteModal
+          show={showModal}
+          onClose={() => setShowModal(false)}
+          onSave={handleAddNote}
+          newNote={newNote}
+          handleInputChange={handleInputChange}
+          clients={clients}
+        />
+      </div>
     );
 };
 

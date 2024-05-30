@@ -23,13 +23,13 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-2">
-        <DevelopmentTable
-          columnsData={columnsDataDevelopment}
-          tableData={tableDataDevelopment}
-        />
-        <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
-          <PieChartCard />
+      <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-4">
+        <PieChartCard />
+        <div className="col-span-3">
+          <DevelopmentTable
+            columnsData={columnsDataDevelopment}
+            tableData={tableDataDevelopment}
+          />
         </div>
       </div>
     </div>

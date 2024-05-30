@@ -80,7 +80,7 @@ const RecentAppointments = () => {
         <div className=" bg-white p-4 rounded-3xl">
             <div className="">
                 <div className="text-xl font-bold text-navy-700 dark:text-white pb-4">
-                    Recent Appointments
+                    Son Randevular
                 </div>
             </div>
             <div className="">

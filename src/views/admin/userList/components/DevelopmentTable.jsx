@@ -29,7 +29,7 @@ const DevelopmentTable = ({ columnsData, tableData }) => {
   const openModal = (index = null) => {
     if (index !== null) {
       setIsEditMode(true);
-      setNewConsultant(tableData[index]); // Düzenlenecek danışmanın bilgilerini set ediyoruz
+      setNewConsultant(tableData[index]);
     } else {
       setIsEditMode(false);
       setNewConsultant({
@@ -43,7 +43,6 @@ const DevelopmentTable = ({ columnsData, tableData }) => {
     }
     setIsModalOpen(true);
   };
-
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -68,8 +67,6 @@ const DevelopmentTable = ({ columnsData, tableData }) => {
   };
 
   const handleDelete = (id) => {
-    // Danışanı silme işlemi
-    // Örnek: dispatch(deleteConsultant(id));
     closeModal();
     alert("Silindi");
   };
@@ -87,12 +84,21 @@ const DevelopmentTable = ({ columnsData, tableData }) => {
     return cellData[cell.column.Header] || null;
   };
 
+  const formFields = [
+    { key: 'kullaniciAdi', label: 'Kullanıcı Adı' },
+    { key: 'ad', label: 'Ad' },
+    { key: 'soyad', label: 'Soyad' },
+    { key: 'mail', label: 'Mail' },
+    { key: 'telefon', label: 'Telefon' },
+    { key: 'tarih', label: 'Kayıt Tarihi', type: 'date' }
+  ];
+
   return (
     <Card extra={"w-full h-full p-4"}>
       <div className="relative flex items-center justify-between">
         <div className="text-xl font-bold text-navy-700 dark:text-white">Danışan Listesi</div>
         <button
-          className="flex items-center text-xl hover:cursor-pointer bg-lightPrimary p-2 text-brand-500 hover:bg-gray-100 dark:bg-navy-700 dark:text-white dark:hover:bg-white/20 dark:active:bg-white/10 linear justify-center rounded-lg font-bold transition duration-200"
+          className="md:text-xl hover:cursor-pointer bg-navy-600 p-2 text-white hover:bg-navy-400 dark:bg-navy-600 dark:text-white dark:hover:bg-white/20 dark:active:bg-white/10 rounded-lg font-bold transition duration-200"
           onClick={() => openModal()}
         >
           Danışan Ekle
@@ -146,19 +152,17 @@ const DevelopmentTable = ({ columnsData, tableData }) => {
           <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
             <h2 className="text-xl font-bold mb-4">{isEditMode ? "Danışanı Düzenle" : "Danışanı Ekle"}</h2>
             <form onSubmit={handleSubmit}>
-              {["kullaniciAdi", "ad", "soyad", "mail", "telefon", "tarih"].map((field) => (
-                <div className="mb-4" key={field}>
-                  <label className="block text-sm font-bold mb-1" htmlFor={field}>
-                    {field === "kullaniciAdi" ? "Kullanıcı Adı" : field.charAt(0).toUpperCase() + field.slice(1)}:
+              {formFields.map((field) => (
+                <div className="mb-4" key={field.key}>
+                  <label className="block text-sm font-bold mb-1" htmlFor={field.key}>
+                    {field.label}:
                   </label>
                   <input
-                    className="border border-gray-300 rounded px-4 py-2 w-full focus
-focus
-"
-                    type={field === "tarih" ? "date" : "text"}
-                    id={field}
-                    name={field}
-                    value={newConsultant[field]}
+                    className="border border-gray-300 rounded px-4 py-2 w-full focus"
+                    type={field.type || "text"}
+                    id={field.key}
+                    name={field.key}
+                    value={newConsultant[field.key]}
                     onChange={handleChange}
                     required
                   />

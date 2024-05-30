@@ -1,45 +1,43 @@
 import React, { useState, useEffect } from 'react';
 
-const DevelopmentTable = () => {
-    const [selectedClient, setSelectedClient] = useState(null);
-    const [clients] = useState([
-        { id: 1, name: 'Danışan 1' },
-        { id: 2, name: 'Danışan 2' }
-    ]);
+const DevelopmentTable = ({ selectedClient }) => {
+    const [clientData, setClientData] = useState(null);
 
     useEffect(() => {
-        if (selectedClient) {
+        const weeklyData = [
+            { date: '2.05.2024', agirlik: '77,1', yag: '2', yagsiz: "1", fark: "0,3" },
+            { date: '12.05.2024', agirlik: '77,2', yag: '1.5', yagsiz: "1", fark: "0,3" },
+            { date: '2.05.2024', agirlik: '77,3', yag: '3', yagsiz: "1", fark: "0,3" },
+        ];
 
-        }
+        setClientData(selectedClient ? weeklyData : null);
     }, [selectedClient]);
 
-    const handleClientSelect = (clientId) => {
-        setSelectedClient(clientId);
-    };
-
-    return (
-        <div className="mx-auto p-4">
-            <h1 className="text-3xl font-bold mb-4">Danışan Takip</h1>
-            <div className="mb-4">
-                <label htmlFor="clientSelect" className="block font-semibold">Danışan Seç:</label>
-                <select
-                    id="clientSelect"
-                    onChange={(e) => handleClientSelect(e.target.value)}
-                    className="p-2 border border-gray-300 rounded-md"
-                    value={selectedClient || ""}
-                >
-                    <option value="">Danışan Seçiniz</option>
-                    {clients.map(client => (
-                        <option key={client.id} value={client.id}>{client.name}</option>
+    return clientData && (
+        <div className="p-4 bg-white rounded-2xl dark:!bg-navy-800 dark:text-white">
+            <h2 className="text-xl font-semibold mb-2">Genel Bilgiler</h2>
+            <table className="w-full border-collapse border border-gray-400">
+                <thead>
+                    <tr className="bg-gray-200 dark:!bg-navy-900 dark:text-white">
+                        <th className="border border-gray-400 px-4 py-2">Ölçüm Tarihi</th>
+                        <th className="border border-gray-400 px-4 py-2">Ağırlık</th>
+                        <th className="border border-gray-400 px-4 py-2">Yağ</th>
+                        <th className="border border-gray-400 px-4 py-2">Yağsız</th>
+                        <th className="border border-gray-400 px-4 py-2">Fark</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {clientData.map((item, index) => (
+                        <tr key={index}>
+                            <td className="border border-gray-400 px-4 py-2 text-center">{item.date}</td>
+                            <td className="border border-gray-400 px-4 py-2 text-center">{item.agirlik}</td>
+                            <td className="border border-gray-400 px-4 py-2 text-center">{item.yag}</td>
+                            <td className="border border-gray-400 px-4 py-2 text-center">{item.yagsiz}</td>
+                            <td className="border border-gray-400 px-4 py-2 text-center">{item.fark}</td>
+                        </tr>
                     ))}
-                </select>
-            </div>
-            {selectedClient && (
-                <div className="mt-4">
-                    <h2 className="text-xl font-semibold mb-2">Danışan {selectedClient} için bilgiler</h2>
-
-                </div>
-            )}
+                </tbody>
+            </table>
         </div>
     );
 };

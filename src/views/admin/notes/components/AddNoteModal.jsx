@@ -1,63 +1,79 @@
-import React from 'react';
+import React from "react";
 
-const AddNoteModal = ({ show, onClose, onSave, newNote, handleInputChange, clients }) => {
-    if (!show) return null;
+const AddNoteModal = ({
+  show,
+  onClose,
+  onSave,
+  newNote,
+  setNewNote,
+  users,
+}) => {
+  if (!show) return null;
 
-    return (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full pt-10 z-50">
-            <div className="relative top-20 mx-auto p-5 border md:w-1/3 shadow-lg rounded-md bg-white">
-                <h2 className="text-xl font-bold mb-4">Yeni Not Ekle</h2>
-                <form>
-                    <div className="mb-4">
-                        <label className="block text-gray-700">Danışan:</label>
-                        <select
-                            value={newNote.client.name}
-                            onChange={(e) => handleInputChange(e, 'client')}
-                            className="w-full border border-gray-300 rounded-md p-2"
-                        >
-                            <option value="" disabled>Danışan seç</option>
-                            {clients.map(client => (
-                                <option key={client} value={client}>{client}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="mb-4">
-                        <label className="block text-gray-700">Başlık:</label>
-                        <input
-                            type="text"
-                            name="title"
-                            value={newNote.title}
-                            onChange={(e) => handleInputChange(e)}
-                            className="w-full border border-gray-300 rounded-md p-2"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block text-gray-700">Açıklama:</label>
-                        <textarea
-                            name="description"
-                            value={newNote.description}
-                            onChange={(e) => handleInputChange(e)}
-                            className="w-full border border-gray-300 rounded-md p-2"
-                        />
-                    </div>
-                </form>
-                <div className="flex justify-end space-x-4">
-                    <button
-                        onClick={onClose}
-                        className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600"
-                    >
-                        İptal
-                    </button>
-                    <button
-                        onClick={onSave}
-                        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-                    >
-                        Kaydet
-                    </button>
-                </div>
-            </div>
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewNote((prevNote) => ({
+      ...prevNote,
+      [name]: value,
+    }));
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
+      <div className="w-1/3 rounded-lg bg-white p-6">
+        <h2 className="mb-4 text-xl font-bold">Yeni Not Ekle</h2>
+        <div className="mb-4">
+          <label className="mb-2 block">Danışan</label>
+          <select
+            name="user"
+            value={newNote.user}
+            onChange={handleChange}
+            className="w-full rounded-md border border-gray-300 p-2"
+          >
+            <option value="">Seçiniz</option>
+            {users.map((user, index) => (
+              <option key={index} value={`${user.ad} ${user.soyad}`}>
+                {user.ad} {user.soyad}
+              </option>
+            ))}
+          </select>
         </div>
-    );
+        <div className="mb-4">
+          <label className="mb-2 block">Not</label>
+          <textarea
+            name="note"
+            value={newNote.note}
+            onChange={handleChange}
+            className="w-full rounded-md border border-gray-300 p-2"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="mb-2 block">Tarih</label>
+          <input
+            type="text"
+            name="tarih"
+            value={new Date().toLocaleDateString()}
+            disabled
+            className="w-full rounded-md border border-gray-300 p-2"
+          />
+        </div>
+        <div className="flex justify-end space-x-4">
+          <button
+            onClick={onClose}
+            className="rounded-md bg-gray-300 px-4 py-2 hover:bg-gray-400"
+          >
+            İptal
+          </button>
+          <button
+            onClick={onSave}
+            className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-500"
+          >
+            Ekle
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default AddNoteModal;

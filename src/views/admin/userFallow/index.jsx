@@ -1,34 +1,59 @@
 import DevelopmentTable from "./components/DevelopmentTable";
 import PieChartCard from "./components/PieChartCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TotalSpent from "./components/TotalSpent";
+import { appAxios } from "helper/appAxios";
 
 const Tables = () => {
   const [selectedClient, setSelectedClient] = useState(null);
+  const [selectedClientName, setSelectedClientName] = useState(null);
+  const [users, setUsers] = useState([]);
+  const [user, setUser] = useState(null);
 
-  const clients = [
-    { id: 1, name: 'Danışan 1' },
-    { id: 2, name: 'Danışan 2' }
-  ];
+  useEffect(() => {
+    appAxios
+      .post("user/user-get", {})
+      .then(async (response) => {
+        if (response.data.status) {
+          setUsers(response.data.data);
+        }
+      })
+      .catch((err) => {});
+  }, []);
 
-  const handleClientSelect = (clientId) => {
-    setSelectedClient(clientId);
+  const changeUserSelect = (event) => {
+    setSelectedClient(event.target.value);
+    const selectedUser = users.find(
+      (u) => u.user_id === parseInt(event.target.value)
+    );
+    setUser(selectedUser);
+    setSelectedClientName(selectedUser.ad + " " + selectedUser.soyad);
   };
 
   return (
     <div className="mt-4">
       <h1 className="text-3xl font-bold dark:text-white">Danışan Takip</h1>
       <div className="mb-3">
-        <label htmlFor="clientSelect" className="block p-1 dark:text-white font-semibold">Danışan Seç:</label>
+        <label
+          htmlFor="clientSelect"
+          className="block p-1 font-semibold dark:text-white"
+        >
+          Danışan Seç:
+        </label>
         <select
           id="clientSelect"
-          onChange={(e) => handleClientSelect(e.target.value)}
-          className="p-2 border border-gray-300 rounded-md"
+          placeholder="Danışan Seç"
+          onChange={changeUserSelect}
+          className="rounded-md border border-gray-300 p-2"
           value={selectedClient || ""}
         >
-          <option value="">Danışan Seçiniz</option>
-          {clients.map(client => (
-            <option key={client.id} value={client.id}>{client.name}</option>
+          <option value="" disabled>
+            Danışan Seç
+          </option>
+          {users.map((user) => (
+            <option key={user.user_id} value={user.user_id}>
+              {user.ad} {user.soyad}
+            </option>
           ))}
         </select>
       </div>
@@ -36,18 +61,12 @@ const Tables = () => {
         {selectedClient && (
           <>
             <div className="mt-5 grid h-full grid-cols-1">
-              <DevelopmentTable
-                selectedClient={selectedClient}
-              />
+              <DevelopmentTable selectedClient={selectedClient} />
             </div>
-            <div className="mt-5 gap-5 grid h-full grid-cols-3">
-              <PieChartCard
-                selectedClient={selectedClient}
-              />
+            <div className="mt-5 grid h-full grid-cols-3 gap-5">
+              <PieChartCard selectedClient={selectedClient} />
               <div className="col-span-2">
-                <TotalSpent
-                  selectedClient={selectedClient}
-                />
+                <TotalSpent selectedClient={selectedClient} />
               </div>
             </div>
           </>

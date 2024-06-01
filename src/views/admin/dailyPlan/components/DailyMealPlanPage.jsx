@@ -102,6 +102,9 @@ const DailyMealPlanPage = ({
           className="rounded-md border border-gray-300 p-2"
           value={selectedClient || ""}
         >
+          <option value="" disabled>
+            Danışan Seç
+          </option>
           {users.map((user) => (
             <option key={user.user_id} value={user.user_id}>
               {user.ad} {user.soyad}

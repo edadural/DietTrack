@@ -16,7 +16,7 @@ export const columnsDataDevelopment = [
     accessor: "soyad",
   },
   {
-    Header: "EMAIL",
+    Header: "EMAİL",
     accessor: "e_posta",
   },
   {
@@ -26,6 +26,6 @@ export const columnsDataDevelopment = [
   {
     Header: "KAYIT TARİHİ",
     accessor: "giris_tarih",
-  }
+  },
 ];
 

@@ -1,173 +1,138 @@
-import React, { useState } from 'react';
-import ClientNoteItem from './ClientNoteItem';
-import AddNoteModal from './AddNoteModal';
+import React, { useEffect, useState } from "react";
+import ClientNoteItem from "./ClientNoteItem";
+import AddNoteModal from "./AddNoteModal";
 
-const AllNotes = () => {
-    const [notes, setNotes] = useState([
-        {
-            id: 1,
-            user: { name: 'Lesley Grauer' },
-            client: { name: 'Bernardo James' },
-            date: 'Today',
-            time: '4:50 PM',
-            title: 'Bernardo James',
-            description: 'Uploaded 3 new photos for World Safety Event',
-        },
-        {
-            id: 2,
-            user: { name: 'Lesley Grauer' },
-            client: { name: 'Bernardo James' },
-            date: 'Today',
-            time: '4:30 PM',
-            title: 'Bernardo James',
-            description: 'Uploaded 3 new photos for World Safety Event',
-        },
-        {
-            id: 3,
-            user: { name: 'Catherine Manseau' },
-            client: { name: 'Linda Carpenter' },
-            date: 'Yesterday',
-            time: '3:20 PM',
-            title: 'Linda Carpenter',
-            description: 'Doctors Meeting',
-        },
-        {
-            id: 4,
-            user: { name: 'Bernardo Galaviz' },
-            client: { name: 'Markhay Smith' },
-            date: '05 Sep 2022',
-            time: '1:20 PM',
-            title: 'Markhay Smith',
-            description: 'Was completed the operation within deadline',
-        },
-        {
-            id: 5,
-            user: { name: 'Mike Litorus' },
-            client: { name: 'Rio Williams' },
-            date: '20 Oct 2022',
-            time: '2:20 PM',
-            title: 'Rio Williams',
-            description: 'Posted a blog about Corona safety measurements',
-        }
-    ]);
+const AllNotes = ({ notlar, users, newNote, setNewNote, Ekle, Sil }) => {
+  const [notes, setNotes] = useState([]);
+  const [selectedClient, setSelectedClient] = useState("Tümü");
+  const [showModal, setShowModal] = useState(false);
 
-    const [selectedClient, setSelectedClient] = useState('Tümü');
-    const [showModal, setShowModal] = useState(false);
-    const [newNote, setNewNote] = useState({
-        user: { name: 'Lesley Grauer' }, // Default user
-        client: { name: '' },
-        date: '',
-        time: '',
-        title: '',
-        description: ''
+  useEffect(() => {
+    const formattedNotes = notlar.map((n) => ({
+      id: n.id,
+      user_id: n.user_id,
+      tarih: new Date(n.tarih).toLocaleDateString(),
+      time: new Date(n.tarih).toLocaleTimeString(),
+      note: n.note,
+      user: { name: `${n.ad} ${n.soyad}` },
+    }));
+    setNotes(formattedNotes);
+  }, [notlar]);
+
+  const clients = [
+    { name: "Tümü" },
+    ...users.map((user) => ({ name: `${user.ad} ${user.soyad}` })),
+  ];
+
+  const filteredNotes =
+    selectedClient === "Tümü"
+      ? notes
+      : notes.filter((note) => note.user.name === selectedClient);
+
+  const handleClientChange = (e) => {
+    setSelectedClient(e.target.value);
+  };
+
+  const handleAddNote = () => {
+    const selectedUser = users.find(
+      (user) => `${user.ad} ${user.soyad}` === newNote.user
+    );
+
+    if (!selectedUser) {
+      alert("Lütfen geçerli bir kullanıcı seçin.");
+      return;
+    }
+
+    const newId = Math.max(...notes.map((note) => note.user_id), 0) + 1;
+    const currentDate = new Date();
+
+    const noteToAdd = {
+      id: newId,
+      user_id: selectedUser.user_id,
+      tarih: currentDate.toLocaleDateString(),
+      time: currentDate.toLocaleTimeString(),
+      note: newNote.note,
+      user: { name: newNote.user },
+    };
+
+    setNotes([noteToAdd, ...notes]);
+
+    setNewNote({
+      user: "",
+      note: "",
     });
 
-    const clients = [
-        'Tümü',
-        'Bernardo James',
-        'Linda Carpenter',
-        'Markhay Smith',
-        'Rio Williams',
-    ];
+    setShowModal(false);
+    Ekle(noteToAdd);
+  };
 
-    const filteredNotes = selectedClient === 'Tümü' ? notes : notes.filter(note => note.client.name === selectedClient);
-
-    const handleClientChange = (e) => {
-        setSelectedClient(e.target.value);
-    };
-
-    const handleAddNote = () => {
-        setNotes([
-            { 
-                id: notes.length + 1,
-                ...newNote, 
-                date: new Date().toLocaleDateString(), 
-                time: new Date().toLocaleTimeString() 
-            },
-            ...notes,
-        ]);
-        setNewNote({ 
-            user: { name: 'Lesley Grauer' }, 
-            client: { name: '' },
-            date: '', 
-            time: '', 
-            title: '', 
-            description: '' 
-        });
-        setShowModal(false);
-    };
-
-    const handleInputChange = (e, field) => {
-        const { name, value } = e.target;
-        if (field === 'user') {
-            const selectedUser = clients.find(client => client.name === value);
-            setNewNote({ ...newNote, user: selectedUser });
-        } else if (field === 'client') {
-            setNewNote({ ...newNote, client: { name: value } });
-        } else {
-            setNewNote({ ...newNote, [name]: value });
-        }
-    };
-
-    const handleDeleteNote = (id) => {
-        const confirmDelete = window.confirm("Bu notu silmek istediğinizden emin misiniz?");
-        if (confirmDelete) {
-            setNotes(notes.filter(note => note.id !== id));
-        }
-    };
-
-    return (
-        <div className="container mx-auto p-4 ">
-            <div className="bg-white dark:!bg-navy-700 dark:text-white rounded-3xl shadow-md p-6">
-                <div className="flex justify-between items-center mb-4">
-                    <h1 className="md:text-2xl text-xl font-bold">Tüm Danışan Notları</h1>
-                    <div className="flex space-x-4">
-                        <select
-                            value={selectedClient}
-                            onChange={handleClientChange}
-                            className="border border-gray-300 rounded-md md:p-2 md:text-base text-sm"
-                        >
-                            {clients.map(client => (
-                                <option key={client} value={client}>{client}</option>
-                            ))}
-                        </select>
-                        <button
-                            onClick={() => setShowModal(true)}
-                            className="bg-blue-600 text-white md:px-4 md:py-2 px-2 rounded-md hover:bg-blue-500 md:text-base text-sm"
-                        >
-                            Not Ekle
-                        </button>
-                    </div>
-                </div>
-                <div className="relative">
-                    <ul className="list-none m-0 p-0 relative z-10">
-                        {filteredNotes.map((note, index) => (
-                            <div className='flex' key={index}>
-                                <div className='w-full'>
-                                    <ClientNoteItem {...note} />
-                                </div>
-                                <button
-                                    onClick={() => handleDeleteNote(note.id)}
-                                    className="text-red-500 hover:text-red-700 px-4 py-2 border rounded m-auto hover:bg-gray-200"
-                                >
-                                    Sil
-                                </button>
-                            </div>
-                        ))}
-                    </ul>
-                    <div className="absolute top-3 left-6 w-0.5 bg-indigo-100 h-full -z-0"></div>
-                </div>
-            </div>
-            <AddNoteModal
-                show={showModal}
-                onClose={() => setShowModal(false)}
-                onSave={handleAddNote}
-                newNote={newNote}
-                handleInputChange={handleInputChange}
-                clients={clients.filter(client => client !== 'Tümü')}
-            />
-        </div>
+  const handleDeleteNote = (note_id) => {
+    const confirmDelete = window.confirm(
+      "Bu notu silmek istediğinizden emin misiniz?"
     );
+
+    if (confirmDelete) {
+        Sil(note_id);
+        setNotes(notes.filter((note) => note.note_id !== note_id));
+    }
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      <div className="rounded-3xl bg-white p-6 shadow-md dark:!bg-navy-700 dark:text-white">
+        <div className="mb-4 flex items-center justify-between">
+          <h1 className="text-xl font-bold md:text-2xl">Tüm Danışan Notları</h1>
+          <div className="flex space-x-4">
+            <select
+              value={selectedClient}
+              onChange={handleClientChange}
+              className="rounded-md border border-gray-300 text-sm md:p-2 md:text-base"
+            >
+              {clients.map((client, index) => (
+                <option key={index} value={client.name}>
+                  {client.name}
+                </option>
+              ))}
+            </select>
+            <button
+              onClick={() => setShowModal(true)}
+              className="rounded-md bg-blue-600 px-2 text-sm text-white hover:bg-blue-500 md:px-4 md:py-2 md:text-base"
+            >
+              Not Ekle
+            </button>
+          </div>
+        </div>
+        <div className="relative">
+          <ul className="relative z-10 m-0 list-none p-0">
+            {filteredNotes.map((note, index) => (
+              <React.Fragment key={index}>
+                <div className="flex">
+                  <div className="w-full">
+                    <ClientNoteItem {...note} />
+                  </div>
+                  <button
+                    onClick={() => handleDeleteNote(note.id)}
+                    className="m-auto rounded border px-4 py-2 text-red-500 hover:bg-gray-200 hover:text-red-700"
+                  >
+                    Sil
+                  </button>
+                </div>
+              </React.Fragment>
+            ))}
+          </ul>
+          <div className="absolute left-6 top-3 -z-0 h-full w-0.5 bg-indigo-100"></div>
+        </div>
+      </div>
+      <AddNoteModal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        onSave={handleAddNote}
+        newNote={newNote}
+        setNewNote={setNewNote}
+        users={users}
+      />
+    </div>
+  );
 };
 
 export default AllNotes;

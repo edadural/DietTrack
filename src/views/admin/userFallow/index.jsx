@@ -64,7 +64,7 @@ const Tables = () => {
               <DevelopmentTable selectedClient={selectedClient} />
             </div>
             <div className="mt-5 grid h-full grid-cols-3 gap-5">
-              <PieChartCard selectedClient={selectedClient} />
+              <PieChartCard user={user} />
               <div className="col-span-2">
                 <TotalSpent selectedClient={selectedClient} />
               </div>

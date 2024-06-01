@@ -33,14 +33,29 @@ const DailyMealPlanPage = ({
         aksam: beslenme.aksam,
         atistirma: beslenme.atistirma,
       }));
-      setWeeklyMealPlan(newMealPlan);
+      if (newMealPlan?.length > 0) {
+        setWeeklyMealPlan(newMealPlan);
+      } else {
+        const date = new Date();
+        setWeeklyMealPlan(
+          Array(7)
+            .fill()
+            .map((_, index) => ({
+              tarih: format(addDays(date, index), "yyyy.MM.dd 00:00:00"),
+              kahvalti: "",
+              ogle: "",
+              aksam: "",
+              atistirma: "",
+            }))
+        );
+      }
     } else {
       const date = new Date();
       setWeeklyMealPlan(
         Array(7)
           .fill()
           .map((_, index) => ({
-            tarih: format(addDays(date, index), "dd.MM.yyyy 00:00:00"),
+            tarih: format(addDays(date, index), "yyyy.MM.dd 00:00:00"),
             kahvalti: "",
             ogle: "",
             aksam: "",
@@ -167,8 +182,6 @@ const DailyMealPlanPage = ({
 
 const MealInput = ({ value, onChange }) => {
   const handleInput = (e) => {
-    e.target.style.height = "auto";
-    e.target.style.height = `${e.target.scrollHeight}px`;
     onChange(e);
   };
 
@@ -177,8 +190,7 @@ const MealInput = ({ value, onChange }) => {
       value={value}
       onChange={handleInput}
       className="w-full resize-none overflow-hidden rounded-md border border-gray-300 px-2 py-1"
-      style={{ height: "auto" }}
-      rows={1}
+      rows={value.split("\n").length}
     />
   );
 };

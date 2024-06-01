@@ -1,8 +1,6 @@
 import Chart from "react-apexcharts";
 
-const PieChart = (props) => {
-  const { series, options } = props;
-
+const PieChart = ({ series, options }) => {
   return (
     <Chart
       options={options}

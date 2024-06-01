@@ -39,6 +39,7 @@ const Dashboard = () => {
 
   const Ekle = () => {
     showLoad();
+    console.log("weeklyMealPlan", weeklyMealPlan);
     appAxios
       .post("beslenme/beslenme-add", {
         user_id: user?.user_id,
@@ -46,7 +47,17 @@ const Dashboard = () => {
       })
       .then(async (response) => {
         if (response.data.status) {
-          // swalClose();
+          console.log(response.data.data);
+          const datas = response.data.data;
+          const newMealPlan = datas.map((beslenme) => ({
+            beslenme_id: beslenme.id,
+            tarih: beslenme.tarih,
+            kahvalti: beslenme.kahvalti,
+            ogle: beslenme.ogle,
+            aksam: beslenme.aksam,
+            atistirma: beslenme.atistirma,
+          }));
+          setWeeklyMealPlan(newMealPlan);
         }
       })
       .catch((err) => {});

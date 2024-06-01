@@ -27,6 +27,7 @@
     "axios": "^1.7.2",
     "date-fns": "^2.30.0",
     "framer-motion": "^7.10.2",
+    "moment-timezone": "^0.5.45",
     "react": "^18.2.0",
     "react-apexcharts": "1.4.0",
     "react-calendar": "^3.9.0",

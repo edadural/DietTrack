@@ -15,7 +15,6 @@ const Dashboard = () => {
         .then((response) => {
           if (response.data.status) {
             setBeslenmes(response.data.data);
-            console.log("222", response.data.data);
           }
         })
         .catch((err) => {

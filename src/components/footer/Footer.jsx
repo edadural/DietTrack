@@ -7,7 +7,7 @@ const Footer = () => {
         </p>
       </h5>
       <div>
-        <ul className="flex flex-wrap items-center gap-3 sm:flex-nowrap md:gap-10">
+        {/* <ul className="flex flex-wrap items-center gap-3 sm:flex-nowrap md:gap-10">
           <li>
             <a
               target="blank"
@@ -44,7 +44,7 @@ const Footer = () => {
               Blog
             </a>
           </li>
-        </ul>
+        </ul> */}
       </div>
     </div>
   );

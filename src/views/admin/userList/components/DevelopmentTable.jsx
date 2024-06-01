@@ -8,7 +8,7 @@ import {
 } from "react-table";
 import { dateFormatter } from "helper/utils";
 
-const DevelopmentTable = ({ columnsData, tableData, Ekle, Guncelle }) => {
+const DevelopmentTable = ({ columnsData, tableData, Ekle, Guncelle, Sil }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [newConsultant, setNewConsultant] = useState({
@@ -18,6 +18,7 @@ const DevelopmentTable = ({ columnsData, tableData, Ekle, Guncelle }) => {
     soyad: "",
     e_posta: "",
     telf: "",
+    heigth: "",
     giris_tarih: new Date().toISOString().split("T")[0],
   });
 
@@ -60,6 +61,7 @@ const DevelopmentTable = ({ columnsData, tableData, Ekle, Guncelle }) => {
         soyad: "",
         e_posta: "",
         telf: "",
+        heigth: "",
         giris_tarih: new Date().toISOString().split("T")[0],
       });
     }
@@ -86,20 +88,22 @@ const DevelopmentTable = ({ columnsData, tableData, Ekle, Guncelle }) => {
       mail: newConsultant.e_posta,
       password: "12345",
       phone: newConsultant.telf,
+      heigth: newConsultant.heigth,
     };
     if (isEditMode) {
       console.log("güncellendi");
+      console.log("newConsultant", newConsultant);
       Guncelle(formData);
     } else {
       console.log("eklendi");
+      console.log("newConsultant", newConsultant);
       Ekle(formData);
     }
     closeModal();
   };
 
-  const handleDelete = (id) => {
-    closeModal();
-    alert("Silindi");
+  const handleDelete = (user_id) => {
+    Sil(user_id);
   };
 
   const renderCell = (cell) => {
@@ -124,7 +128,7 @@ const DevelopmentTable = ({ columnsData, tableData, Ekle, Guncelle }) => {
           {cell.value}
         </p>
       ),
-      "EMAİL": (
+      EMAİL: (
         <p className="text-sm font-bold text-navy-700 dark:text-white">
           {cell.value}
         </p>
@@ -149,6 +153,7 @@ const DevelopmentTable = ({ columnsData, tableData, Ekle, Guncelle }) => {
     { key: "soyad", label: "Soyad" },
     { key: "e_posta", label: "E-Posta" },
     { key: "telf", label: "Telefon" },
+    { key: "heigth", label: "Boy" },
   ];
 
   if (!isEditMode) {
@@ -196,7 +201,7 @@ const DevelopmentTable = ({ columnsData, tableData, Ekle, Guncelle }) => {
                   </th>
                 ))}
                 <th className="border-b border-gray-200 pb-[5px] text-start dark:!border-navy-700 ">
-                  <p className="text-xs text-center font-bold tracking-wide text-gray-600">
+                  <p className="text-center text-xs font-bold tracking-wide text-gray-600">
                     DÜZENLE
                   </p>
                 </th>
@@ -217,7 +222,7 @@ const DevelopmentTable = ({ columnsData, tableData, Ekle, Guncelle }) => {
                       {renderCell(cell)}
                     </td>
                   ))}
-                  <td className="pb-3 pt-[14px] text-[14px] text-center">
+                  <td className="pb-3 pt-[14px] text-center text-[14px]">
                     <button
                       className="mr-2 rounded bg-blue-500 px-4 py-2 text-white"
                       onClick={() => openModal(rowIndex)}
@@ -226,7 +231,7 @@ const DevelopmentTable = ({ columnsData, tableData, Ekle, Guncelle }) => {
                     </button>
                     <button
                       className="rounded bg-red-500 px-4 py-2 text-white focus:outline-none"
-                      onClick={() => handleDelete(row.original.id)}
+                      onClick={() => handleDelete(row.original.user_id)}
                     >
                       Sil
                     </button>

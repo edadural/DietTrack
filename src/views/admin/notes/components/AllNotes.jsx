@@ -67,14 +67,7 @@ const AllNotes = ({ notlar, users, newNote, setNewNote, Ekle, Sil }) => {
   };
 
   const handleDeleteNote = (note_id) => {
-    const confirmDelete = window.confirm(
-      "Bu notu silmek istediğinizden emin misiniz?"
-    );
-
-    if (confirmDelete) {
-        Sil(note_id);
-        setNotes(notes.filter((note) => note.note_id !== note_id));
-    }
+    Sil(note_id);
   };
 
   return (

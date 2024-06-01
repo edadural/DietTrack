@@ -3,9 +3,11 @@ import { columnsDataDevelopment } from "./variables/columnsData";
 import DevelopmentTable from "./components/DevelopmentTable";
 import { appAxios } from "helper/appAxios";
 import { showLoad } from "helper/swal";
+import { swalQuestion } from "helper/swal";
 
 const Tables = () => {
   const [datas, setDatas] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     appAxios
@@ -24,7 +26,17 @@ const Tables = () => {
       .post("user/user-add", formData)
       .then(async (response) => {
         if (response.data.status) {
-          // swalClose();
+          const data = response.data.data;
+          const newUser = {
+            user_id: data.user_id,
+            username: data.username,
+            name: data.name,
+            surname: data.surname,
+            mail: data.mail,
+            phone: data.phone,
+            heigth: data.heigth,
+          };
+          setDatas((el) => [...el, newUser]);
         }
       })
       .catch((err) => {});
@@ -36,10 +48,43 @@ const Tables = () => {
       .post("user/user-update", formData)
       .then(async (response) => {
         if (response.data.status) {
-          console.log("güncelle");
+          const data = response.data.data;
+          
+          const updatedUser = {
+            user_id: data.user_id,
+            k_adi: data.username,
+            ad: data.name,
+            soyad: data.surname,
+            e_posta: data.mail,
+            telf: data.phone,
+            heigth: data.heigth,
+            giris_tarih: data.giris_tarih,
+          };
+          
+          setDatas((prevDatas) =>
+            prevDatas.map((user) =>
+              user.user_id === updatedUser.user_id ? updatedUser : user
+            )
+          );
         }
       })
       .catch((err) => {});
+  };
+
+  const Sil = (user_id) => {
+    showLoad();
+    swalQuestion(() => {
+      appAxios
+        .post("user/user-delete", { user_id })
+        .then(async (response) => {
+          if (response.data.status) {
+            setUsers(users.filter((user) => user.id !== user_id));
+          }
+        })
+        .catch((err) => {
+          console.error("Kullanıcı silinemedi:", err);
+        });
+    });
   };
 
   return (
@@ -50,6 +95,7 @@ const Tables = () => {
           tableData={datas}
           Ekle={Ekle}
           Guncelle={Guncelle}
+          Sil={Sil}
         />
       </div>
     </div>

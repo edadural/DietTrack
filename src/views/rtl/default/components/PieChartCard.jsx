@@ -1,8 +1,9 @@
 import PieChart from "components/charts/PieChart";
-import { pieChartData, pieChartOptions } from "variables/charts";
+import { pieChartOptions } from "variables/charts";
 import Card from "components/card";
 
 const PieChartCard = () => {
+  const series = [20, 80];
   return (
     <Card extra="rounded-[20px] p-3">
       <div className="flex flex-row justify-between px-3 pt-2">
@@ -13,22 +14,20 @@ const PieChartCard = () => {
         </div>
 
         <div className="mb-6 flex items-center justify-center">
-          <select className="mb-3 flex items-center justify-center text-sm font-bold text-gray-600 me-2 hover:cursor-pointer dark:!bg-navy-800 dark:text-white">
-            <option value="monthly">Monthly</option>
-            <option value="yearly">Yearly</option>
-            <option value="weekly">Weekly</option>
+          <select className="mb-3 me-2 flex items-center justify-center text-sm font-bold text-gray-600 hover:cursor-pointer dark:!bg-navy-800 dark:text-white">
+            <option value="monthly">Haftalık</option>
           </select>
         </div>
       </div>
 
       <div className="mb-auto flex h-[220px] w-full items-center justify-center">
-        <PieChart options={pieChartOptions} series={pieChartData} />
+        <PieChart options={pieChartOptions} series={series} />
       </div>
       <div className="flex flex-row !justify-between rounded-2xl px-6 py-3 shadow-2xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
         <div className="flex flex-col items-center justify-center">
           <div className="flex items-center justify-center">
             <div className="h-2 w-2 rounded-full bg-brand-500" />
-            <p className="text-sm font-normal text-gray-600 ms-1">Your Files</p>
+            <p className="ms-1 text-sm font-normal text-gray-600">Your Files</p>
           </div>
           <p className="mt-px text-xl font-bold text-navy-700  dark:text-white">
             63%
@@ -40,7 +39,7 @@ const PieChartCard = () => {
         <div className="flex flex-col items-center justify-center">
           <div className="flex items-center justify-center">
             <div className="h-2 w-2 rounded-full bg-[#6AD2FF]" />
-            <p className="text-sm font-normal text-gray-600 ms-1">System</p>
+            <p className="ms-1 text-sm font-normal text-gray-600">System</p>
           </div>
           <p className="mt-px text-xl font-bold text-navy-700 dark:text-white">
             25%

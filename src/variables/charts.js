@@ -103,8 +103,8 @@ export const barChartOptionsDailyTraffic = {
 };
 
 export const pieChartOptions = {
-  labels: ["Your files", "System", "Empty"],
-  colors: ["#4318FF", "#6AD2FF", "#EFF4FB"],
+  labels: ["Tamamlanan", "Kalan"],
+  colors: ["#6AD2FF", "#CCCCCC"],
   chart: {
     width: "50px",
   },
@@ -133,7 +133,7 @@ export const pieChartOptions = {
     },
   },
   fill: {
-    colors: ["#4318FF", "#6AD2FF", "#EFF4FB"],
+    colors: ["#6AD2FF", "#EFF4FB"],
   },
   tooltip: {
     enabled: true,
@@ -141,12 +141,10 @@ export const pieChartOptions = {
     style: {
       fontSize: "12px",
       fontFamily: undefined,
-      backgroundColor: "#000000"
+      backgroundColor: "#000000",
     },
   },
 };
-
-export const pieChartData = [63, 25, 12];
 
 export const barChartDataWeeklyRevenue = [
   {

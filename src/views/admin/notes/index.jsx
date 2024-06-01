@@ -3,6 +3,7 @@ import AllNotes from "./components/AllNotes";
 import { appAxios } from "helper/appAxios";
 import { showLoad } from "helper/swal";
 import { swalClose } from "helper/swal";
+import { swalQuestion } from "helper/swal";
 
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
@@ -48,17 +49,18 @@ const Dashboard = () => {
 
   const Sil = (note_id) => {
     showLoad();
-    appAxios
-      .post("note/note-delete", { note_id })
-      .then(async (response) => {
-        if (response.data.status) {
-          console.log("Not başarıyla silindi");
-          swalClose();
-        }
-      })
-      .catch((err) => {
-        console.error("Not silinemedi:", err);
-      });
+    swalQuestion(() => {
+      appAxios
+        .post("note/note-delete", { note_id })
+        .then(async (response) => {
+          if (response.data.status) {
+            setNotlar(notlar.filter((note) => note.id !== note_id));
+          }
+        })
+        .catch((err) => {
+          console.error("Not silinemedi:", err);
+        });
+    });
   };
 
   return (

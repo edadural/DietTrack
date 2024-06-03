@@ -11,7 +11,7 @@ const getInitials = (name) => {
 
 const ClientNoteItem = ({ user, tarih, note }) => (
   <li className="relative mb-2 p-2 hover:bg-gray-100 dark:hover:bg-navy-900 ">
-    <div className="absolute left-2 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-gray-300 font-bold text-white">
+    <div className="absolute left-2 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-gray-300 font-bold text-white dark:text-navy-900">
       {getInitials(user?.name)}
     </div>
     <div className="relative ml-10 rounded-xl bg-white p-4 shadow dark:!bg-navy-800 dark:text-white">

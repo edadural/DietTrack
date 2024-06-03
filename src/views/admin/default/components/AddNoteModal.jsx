@@ -20,7 +20,7 @@ const AddNoteModal = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
-      <div className="w-1/3 rounded-lg bg-white p-6">
+      <div className="md:w-1/3 rounded-lg bg-white p-6">
         <h2 className="mb-4 text-xl font-bold">Yeni Not Ekle</h2>
         <div className="mb-4">
           <label className="mb-2 block">Danışan</label>

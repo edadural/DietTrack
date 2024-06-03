@@ -171,7 +171,7 @@ const DevelopmentTable = ({ columnsData, tableData, Ekle, Guncelle, Sil }) => {
           Danışan Listesi
         </div>
         <button
-          className="rounded-lg bg-navy-600 p-2 font-bold text-white transition duration-200 hover:cursor-pointer hover:bg-navy-400 dark:bg-navy-600 dark:text-white dark:hover:bg-white/20 dark:active:bg-white/10 md:text-xl"
+          className="rounded-lg bg-navy-600 p-2 font-bold text-white transition duration-200 hover:cursor-pointer hover:bg-navy-400 dark:bg-navy-600 dark:text-white dark:hover:bg-white/20 dark:active:bg-white/10 md:text-lg"
           onClick={() => openModal()}
         >
           Danışan Ekle

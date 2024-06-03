@@ -1,74 +1,100 @@
 import React, { useState, useEffect } from "react";
+import AddMeasurementModal from "./AddMeasurementModal";
 
-const DevelopmentTable = ({ selectedClient }) => {
-  const [clientData, setClientData] = useState(null);
+const DevelopmentTable = ({ selectedClient, table, Ekle }) => {
+  const [clientData, setClientData] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    const weeklyData = [
-      {
-        date: "2.05.2024",
-        agirlik: "77,1",
-        yag: "2",
-        yagsiz: "1",
-        sivi: "0,3",
-      },
-      {
-        date: "12.05.2024",
-        agirlik: "77,2",
-        yag: "1.5",
-        yagsiz: "1",
-        sivi: "0,3",
-      },
-      {
-        date: "2.05.2024",
-        agirlik: "77,3",
-        yag: "3",
-        yagsiz: "1",
-        sivi: "0,3",
-      },
-    ];
+    if (selectedClient && Array.isArray(table)) {
+      const formattedData = table.map((item) => ({
+        ...item,
+        tarih: new Date(item.olcum_tarihi).toLocaleDateString(),
+      }));
 
-    setClientData(selectedClient ? weeklyData : null);
-  }, [selectedClient]);
+      const sortedData = formattedData.sort(
+        (a, b) => new Date(a.olcum_tarihi) - new Date(b.olcum_tarihi)
+      );
+
+      setClientData(sortedData);
+    } else {
+      setClientData([]);
+    }
+  }, [selectedClient, table]);
+
+  const handleClick = () => {
+    setShowModal(true);
+  };
+
+  const tableHeaders = [
+    { key: "tarih", label: "Ölçüm Tarihi" },
+    { key: "agirlik", label: "Ağırlık" },
+    { key: "yag", label: "Yağ" },
+    { key: "yagfark", label: "Yağ Fark" },
+    { key: "yagsiz", label: "Yağsız" },
+    { key: "yagsizfark", label: "Yağsız Fark" },
+    { key: "sivi", label: "Sıvı" },
+    { key: "sivifark", label: "Sıvı Fark" },
+  ];
 
   return (
-    clientData && (
+    <div>
       <div className="rounded-2xl bg-white p-4 dark:!bg-navy-800 dark:text-white">
-        <h2 className="mb-2 text-xl font-semibold">Genel Bilgiler</h2>
+        <div className="mb-2 flex items-center justify-between">
+          <h2 className="text-xl font-semibold">Genel Bilgiler</h2>
+          <button
+            className="rounded-lg bg-navy-600 p-2 px-5 font-bold text-white transition duration-200 hover:cursor-pointer hover:bg-navy-400 dark:bg-navy-600 dark:text-white dark:hover:bg-white/20 dark:active:bg-white/10 md:text-lg"
+            onClick={handleClick}
+          >
+            Ekle
+          </button>
+        </div>
         <table className="w-full border-collapse border border-gray-400">
           <thead>
             <tr className="bg-gray-200 dark:!bg-navy-900 dark:text-white">
-              <th className="border border-gray-400 px-4 py-2">Ölçüm Tarihi</th>
-              <th className="border border-gray-400 px-4 py-2">Ağırlık</th>
-              <th className="border border-gray-400 px-4 py-2">Yağ</th>
-              <th className="border border-gray-400 px-4 py-2">Yağsız</th>
-              <th className="border border-gray-400 px-4 py-2">Sıvı</th>
+              {tableHeaders.map((header) => (
+                <th
+                  key={header.key}
+                  className="border border-gray-400 px-4 py-2"
+                >
+                  {header.label}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>
-            {clientData.map((item, index) => (
-              <tr key={index}>
-                <td className="border border-gray-400 px-4 py-2 text-center">
-                  {item.date}
-                </td>
-                <td className="border border-gray-400 px-4 py-2 text-center">
-                  {item.agirlik}
-                </td>
-                <td className="border border-gray-400 px-4 py-2 text-center">
-                  {item.yag}
-                </td>
-                <td className="border border-gray-400 px-4 py-2 text-center">
-                  {item.yagsiz}
-                </td>
-                <td className="border border-gray-400 px-4 py-2 text-center">
-                  {item.sivi}
+            {clientData.length > 0 ? (
+              clientData.map((item, index) => (
+                <tr key={index}>
+                  {tableHeaders.map((header) => (
+                    <td
+                      key={header.key}
+                      className="border border-gray-400 px-4 py-2 text-center"
+                    >
+                      {item[header.key]}
+                    </td>
+                  ))}
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td
+                  colSpan={tableHeaders.length}
+                  className="border border-gray-400 px-4 py-2 text-center"
+                >
+                  Veri yok
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>
-    )
+      <AddMeasurementModal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        onSave={Ekle}
+      />
+    </div>
   );
 };
 

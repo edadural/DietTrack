@@ -58,7 +58,7 @@ const ClientNotes = ({ notlar, users, newNote, setNewNote, Ekle }) => {
 
   return (
     <div className="container mx-auto">
-      <div className="rounded-3xl bg-white p-6 shadow-md">
+      <div className="rounded-3xl bg-white p-6 shadow-md dark:!bg-navy-700 dark:text-white">
         <div className="mb-3 flex justify-between">
           <h1 className="text-xl font-bold md:text-2xl">Danışan Notları</h1>
           <div className="flex justify-end gap-2">

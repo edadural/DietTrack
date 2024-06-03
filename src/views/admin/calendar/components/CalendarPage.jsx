@@ -249,10 +249,7 @@ const CalendarPage = ({
                   value={newEvent.date}
                   onChange={handleInputChange}
                   required
-                  className="focus focus focus w-full rounded-md border
-px-3
-py-2
-"
+                  className="focus focus focus w-full rounded-md border px-3 py-2"
                 />
               </div>
               <div className="mb-4">

@@ -39,7 +39,6 @@ const Dashboard = () => {
 
   const Ekle = () => {
     showLoad();
-    console.log("weeklyMealPlan", weeklyMealPlan);
     appAxios
       .post("beslenme/beslenme-add", {
         user_id: user?.user_id,

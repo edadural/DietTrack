@@ -1,4 +1,3 @@
-import MiniCalendar from "components/calendar/MiniCalendar";
 import TotalSpent from "./components/TotalSpent";
 import PieChartCard from "./components/PieChartCard";
 import BodyMassIndex from "./components/BodyMassIndex";
@@ -7,24 +6,22 @@ import { columnsDataDevelopment } from "./variables/columnsData";
 import tableDataDevelopment from "./variables/tableDataDevelopment.json";
 import { useEffect, useState } from "react";
 import { appAxios } from "helper/appAxios";
+import MiniCalendar from "components/calendar/MiniCalendarUser";
 
 const Dashboard = () => {
   const [beslenmes, setBeslenmes] = useState([]);
 
   useEffect(() => {
-    const username = localStorage.getItem("username");
-    if (username) {
-      appAxios
-        .post("beslenme/user-beslenme-get", { username })
-        .then((response) => {
-          if (response.data.status) {
-            setBeslenmes(response.data.data);
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
+    appAxios
+      .post("beslenme/user-beslenme-get", {})
+      .then((response) => {
+        if (response.data.status) {
+          setBeslenmes(response.data.data);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }, []);
 
   return (

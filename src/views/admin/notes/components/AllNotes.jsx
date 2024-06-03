@@ -73,13 +73,13 @@ const AllNotes = ({ notlar, users, newNote, setNewNote, Ekle, Sil }) => {
   return (
     <div className="container mx-auto p-4">
       <div className="rounded-3xl bg-white p-6 shadow-md dark:!bg-navy-700 dark:text-white">
-        <div className="mb-4 flex items-center justify-between">
-          <h1 className="text-xl font-bold md:text-2xl">Tüm Danışan Notları</h1>
+        <div className="mb-4 flex flex-col gap-2 items-center justify-between md:flex-row">
+          <h1 className="font-bold text-2xl">Tüm Danışan Notları</h1>
           <div className="flex space-x-4">
             <select
               value={selectedClient}
               onChange={handleClientChange}
-              className="rounded-md border border-gray-300 text-sm md:p-2 md:text-base"
+              className="rounded-md border border-gray-300 p-2 md:text-base"
             >
               {clients.map((client, index) => (
                 <option key={index} value={client.name}>
@@ -89,7 +89,7 @@ const AllNotes = ({ notlar, users, newNote, setNewNote, Ekle, Sil }) => {
             </select>
             <button
               onClick={() => setShowModal(true)}
-              className="rounded-md bg-blue-600 px-2 text-sm text-white hover:bg-blue-500 md:px-4 md:py-2 md:text-base"
+              className="rounded-md bg-blue-600 px-4 text-white hover:bg-blue-500 text-base"
             >
               Not Ekle
             </button>

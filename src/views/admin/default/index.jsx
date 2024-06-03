@@ -11,7 +11,7 @@ import { showLoad } from "helper/swal";
 
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
-  const [user, setUser] = useState([]);
+  const [randevu, setRandevu] = useState([]);
   const [notlar, setNotlar] = useState([]);
   const [newNote, setNewNote] = useState({
     user: "",
@@ -27,6 +27,24 @@ const Dashboard = () => {
         }
       })
       .catch((err) => {});
+  }, []);
+
+  useEffect(() => {
+    appAxios
+      .post("randevu/randevu-get", {})
+      .then(async (response) => {
+        if (response.data.status) {
+          const fetchedRandevu = response.data.data.map((item) => ({
+            ...item,
+            basl_tarih: new Date(item.basl_tarih),
+            bitis_tarih: new Date(item.bitis_tarih),
+          }));
+          setRandevu(fetchedRandevu);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }, []);
 
   useEffect(() => {
@@ -52,9 +70,15 @@ const Dashboard = () => {
       .catch((err) => {});
   };
 
+  const today = new Date();
+  const dailyAppointments = randevu.filter(
+    (appointment) =>
+      appointment.basl_tarih.toDateString() === today.toDateString()
+  ).length;
+
   return (
     <div>
-      <div className="mt-3 grid gap-5 md:grid-cols-3">
+      <div className="z-100 mt-3 grid gap-5 md:grid-cols-3">
         <div className="flex flex-col gap-3 ">
           <Widget
             icon={<IoDocuments className="h-6 w-6" />}
@@ -63,22 +87,21 @@ const Dashboard = () => {
           />
           <Widget
             icon={<MdBarChart className="h-6 w-6" />}
-            title={"Randevu sayısı"}
-            subtitle={"10"}
+            title={"Günlük randevu sayısı"}
+            subtitle={dailyAppointments}
           />
           <Widget
             icon={<MdDashboard className="h-6 w-6" />}
-            title={"Randevu sayısı"}
-            subtitle={"10"}
+            title={"Toplam randevu sayısı"}
+            subtitle={randevu.length}
           />
         </div>
         <MiniCalendar />
-        <PieChartCard />
+        <RecentAppointments />
       </div>
 
-      <div className="mt-5 grid grid-cols-1 gap-y-5 md:gap-5 xl:grid-cols-3">
-        <RecentAppointments />
-        <div className="col-span-2 grid">
+      <div className="mt-5 grid grid-cols-1">
+        <div className="z-0">
           <ClientNotes
             notlar={notlar}
             users={users}

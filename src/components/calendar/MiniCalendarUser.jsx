@@ -19,7 +19,6 @@ const MiniCalendar = () => {
       title: "Randevu Hatırlatma",
       description: "Haftalık beslenme kontrolu",
     },
-    // Daha fazla olay ekleyebilirsiniz...
   ]);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);

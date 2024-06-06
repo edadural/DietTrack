@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { MdOutlineCalendarToday } from "react-icons/md";
+import React from "react";
 import Card from "components/card";
 import { lineChartOptionsTotalSpent } from "variables/charts";
 import LineChart from "components/charts/LineChart";
@@ -10,25 +9,28 @@ const TotalSpent = ({ selectedClient, table }) => {
   const lineChartDataTotalSpent = [
     {
       name: "Kilo",
-      data: table.map((item) => item.agirlik), // Ağırlık verilerini kullan
+      data: table.map((item) => item.agirlik),
       color: "#4318FF",
     },
     {
-      name: "Yağ Kaybı",
-      data: table.map((item) => item.yag), // Yağ verilerini kullan
+      name: "Yağ",
+      data: table.map((item) => item.yag),
       color: "#6AD2FF",
     },
     {
-      name: "Sıvı Kaybı",
-      data: table.map((item) => item.sivi), // Sıvı verilerini kullan
+      name: "Sıvı",
+      data: table.map((item) => item.sivi),
       color: "#EDAEDA",
+    },
+    {
+      name: "Yağsız",
+      data: table.map((item) => item.yagsiz),
+      color: "#CCCCCC",
     },
   ];
 
-  // Tablodaki hafta sayısını al
   const weekCount = table.length;
 
-  // Hafta sayısına göre categories dizisini oluştur
   const categories = Array.from(
     { length: weekCount },
     (_, i) => `${i + 1}.hafta`

@@ -282,12 +282,12 @@ export const lineChartDataTotalSpent = [
     color: "#4318FF",
   },
   {
-    name: "Yağ Kaybı",
+    name: "Yağ",
     data: [30, 40, 24, 46, 20, 46],
     color: "#6AD2FF",
   },
   {
-    name: "Sıvı Kaybı",
+    name: "Sıvı",
     data: [10, 2, 3, 2, 10, 6],
     color: "#EDAEDA",
   },

@@ -2,6 +2,7 @@ import React from "react";
 
 import MainDashboard from "views/user/default";
 import DailyPlanUser from "views/user/dailyPlan";
+import UserTable from "views/user/table";
 
 import {
     MdBarChart,
@@ -24,5 +25,12 @@ const routesUser = [
         icon: <MdBarChart className="h-6 w-6" />,
         component: <DailyPlanUser />,
     },
+    // {
+    //     name: "Genel Bilgiler",
+    //     layout: "/user",
+    //     path: "table",
+    //     icon: <MdBarChart className="h-6 w-6" />,
+    //     component: <UserTable />,
+    // },
 ]
 export default routesUser;

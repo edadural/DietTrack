@@ -27,15 +27,18 @@ const Tables = () => {
       .then(async (response) => {
         if (response.data.status) {
           const data = response.data.data;
+          console.log("data",data);
           const newUser = {
             user_id: data.user_id,
-            username: data.username,
-            name: data.name,
-            surname: data.surname,
-            mail: data.mail,
-            phone: data.phone,
+            k_adi: data.username,
+            ad: data.name,
+            soyad: data.surname,
+            e_posta: data.mail,
+            telf: data.phone,
             heigth: data.heigth,
+            giris_tarih: data.giris_tarih,
           };
+          console.log(newUser);
           setDatas((el) => [...el, newUser]);
         }
       })
@@ -49,7 +52,7 @@ const Tables = () => {
       .then(async (response) => {
         if (response.data.status) {
           const data = response.data.data;
-          
+
           const updatedUser = {
             user_id: data.user_id,
             k_adi: data.username,
@@ -60,7 +63,7 @@ const Tables = () => {
             heigth: data.heigth,
             giris_tarih: data.giris_tarih,
           };
-          
+
           setDatas((prevDatas) =>
             prevDatas.map((user) =>
               user.user_id === updatedUser.user_id ? updatedUser : user
@@ -70,7 +73,7 @@ const Tables = () => {
       })
       .catch((err) => {});
   };
-
+console.log(users);
   const Sil = (user_id) => {
     showLoad();
     swalQuestion(() => {
@@ -78,7 +81,9 @@ const Tables = () => {
         .post("user/user-delete", { user_id })
         .then(async (response) => {
           if (response.data.status) {
-            setUsers(users.filter((user) => user.id !== user_id));
+            const aa = datas.filter((user) => user.user_id !== user_id);
+            console.log(aa);
+            setDatas(datas.filter((user) => user.user_id !== user_id));
           }
         })
         .catch((err) => {

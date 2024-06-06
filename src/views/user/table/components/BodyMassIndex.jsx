@@ -22,13 +22,15 @@ const BodyMassIndex = ({ tableDataDevelopment }) => {
 
   const bmi = calculateBMI(latestWeight, height);
   const category = getBMICategory(bmi);
-console.log(latestWeight);
+
   return (
     <Card extra="rounded-[20px] p-3">
-      <div className="px-3 py-2 text-center">
-        <h4 className="text-lg font-bold text-navy-700 dark:text-white">
-          Vücut Kitle İndeksi
-        </h4>
+      <div className="flex flex-row justify-between px-3 pt-2">
+        <div>
+          <h4 className="text-lg font-bold text-navy-700 dark:text-white">
+            Vücut Kitle İndeksi
+          </h4>
+        </div>
       </div>
 
       <div className="flex flex-col items-center justify-center py-4">
@@ -40,10 +42,8 @@ console.log(latestWeight);
             type="range"
             min="40"
             max="150"
-            step={0.1}
             className="mt-2 w-full"
-            value={85.5}
-            onChange={()=>{}}
+            defaultValue={latestWeight}
           />
         </div>
         <div className="mt-4 w-full px-4">

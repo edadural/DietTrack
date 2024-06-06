@@ -9,8 +9,7 @@ import Card from "components/card";
 
 const DevelopmentTable = ({ columnsData, tableData }) => {
   const columns = useMemo(() => columnsData, [columnsData]);
-
-  const data = useMemo(() => tableData.slice(-3).reverse(), [tableData]);
+  const data = useMemo(() => tableData, [tableData]);
 
   const tableInstance = useTable(
     {
@@ -59,25 +58,12 @@ const DevelopmentTable = ({ columnsData, tableData }) => {
               </tr>
             ))}
           </thead>
-          {data.length > 0 ? (
-            <tbody {...getTableBodyProps()}>
-              {page.map((row, index) => {
-                prepareRow(row);
-                return <TableRow key={index} row={row} />;
-              })}
-            </tbody>
-          ) : (
-            <tbody>
-              <tr>
-                <td
-                  className="border py-3 text-center"
-                  colSpan={columns.length}
-                >
-                  Veri yok
-                </td>
-              </tr>
-            </tbody>
-          )}
+          <tbody {...getTableBodyProps()}>
+            {page.map((row, index) => {
+              prepareRow(row);
+              return <TableRow key={index} row={row} />;
+            })}
+          </tbody>
         </table>
       </div>
     </Card>

@@ -1,6 +1,8 @@
 import React from "react";
 import Card from "components/card";
-import { lineChartOptionsTotalSpent } from "variables/charts";
+import {
+  lineChartOptionsTotalSpent,
+} from "variables/charts";
 import LineChart from "components/charts/LineChart";
 
 const TotalSpent = ({ table }) => {
@@ -33,15 +35,6 @@ const TotalSpent = ({ table }) => {
     { length: weekCount },
     (_, i) => `${i + 1}.hafta`
   );
-
-  if (table.length === 0) {
-    return (
-      <Card extra="!p-[20px] text-center">
-        <p>Veri yok</p>
-      </Card>
-    );
-  }
-
   return (
     <Card extra="!p-[20px] text-center">
       <div className="flex h-full w-full flex-row justify-between sm:flex-wrap lg:flex-nowrap 2xl:overflow-hidden">

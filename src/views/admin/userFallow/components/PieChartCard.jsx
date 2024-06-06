@@ -34,7 +34,6 @@ const calculateCompletionPercentage = (beslenmes) => {
   let totalTrueTikCount = 0;
   let totalNullTikCount = 0;
   const lastSevenDays = beslenmes.slice(-7);
-  console.log("son7", beslenmes.slice(-7));
 
   lastSevenDays?.forEach((beslenme) => {
     totalTrueTikCount += Object.values(beslenme).filter(

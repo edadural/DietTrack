@@ -18,7 +18,6 @@ const DailyMealPlanPage = ({
   );
 
   useEffect(() => {
-    // Sort the beslenmes array by date
     if (beslenmes !== null) {
       const sortedBeslenmes = beslenmes.sort(
         (a, b) => new Date(a.tarih) - new Date(b.tarih)

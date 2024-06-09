@@ -1,26 +1,14 @@
 import React from "react";
-
-// Admin Imports
 import MainDashboard from "views/admin/default";
-import Fallow from "views/admin/fallow";
 import Calendar from "views/admin/calendar";
 import DailyPlanAdmin from "views/admin/dailyPlan";
 import UserList from "views/admin/userList";
 import UserFallow from "views/admin/userFallow";
-import NFTMarketplace from "views/admin/marketplace";
-import Profile from "views/admin/profile";
-import DataTables from "views/admin/tables";
 import Notes from "views/admin/notes";
-import RTLDefault from "views/rtl/default";
-
-// Auth Imports
 import SignIn from "views/auth/SignIn";
 import SignInAdmin from "views/auth/SignInAdmin";
-
-// Icon Imports
 import {
   MdHome,
-  MdOutlineShoppingCart,
   MdBarChart,
   MdPerson,
   MdLock,
@@ -49,7 +37,7 @@ const routes = [
     component: <Calendar />,
   },
   {
-    name: "Günlük Beslenme",
+    name: "Haftalık Beslenme",
     layout: "/admin",
     path: "dailyPlan",
     icon: <MdBarChart className="h-6 w-6" />,
@@ -69,28 +57,6 @@ const routes = [
     icon: <MdBarChart className="h-6 w-6" />,
     component: <UserFallow />,
   },
-  // {
-  //   name: "NFT Marketplace",
-  //   layout: "/admin",
-  //   path: "nft-marketplace",
-  //   icon: <MdOutlineShoppingCart className="h-6 w-6" />,
-  //   component: <NFTMarketplace />,
-  //   secondary: true,
-  // },
-  // {
-  //   name: "Data Tables",
-  //   layout: "/admin",
-  //   icon: <MdBarChart className="h-6 w-6" />,
-  //   path: "data-tables",
-  //   component: <DataTables />,
-  // },
-  // {
-  //   name: "Profile",
-  //   layout: "/admin",
-  //   path: "profile",
-  //   icon: <MdPerson className="h-6 w-6" />,
-  //   component: <Profile />,
-  // },
   {
     name: "Giriş Yap",
     layout: "/auth",
@@ -105,13 +71,6 @@ const routes = [
     icon: <MdLock className="h-6 w-6" />,
     component: <SignInAdmin />,
   },
-  // {
-  //   name: "RTL Admin",
-  //   layout: "/rtl",
-  //   path: "rtl",
-  //   icon: <MdHome className="h-6 w-6" />,
-  //   component: <RTLDefault />,
-  // },
 ];
 
 export default routes;

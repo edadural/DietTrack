@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { addDays, format } from "date-fns";
 
 const DailyMealPlanPage = ({
   users,
-  user,
   setUser,
   beslenmes,
   weeklyMealPlan,
@@ -181,16 +180,27 @@ const DailyMealPlanPage = ({
 };
 
 const MealInput = ({ value, onChange }) => {
+  const textareaRef = useRef(null);
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height =
+        textareaRef.current.scrollHeight + "px";
+    }
+  }, [value]);
+
   const handleInput = (e) => {
     onChange(e);
   };
 
   return (
     <textarea
+      ref={textareaRef}
       value={value}
       onChange={handleInput}
       className="w-full resize-none overflow-hidden rounded-md border border-gray-300 px-2 py-1"
-      rows={value.split("\n").length}
+      rows={1}
     />
   );
 };

@@ -3,6 +3,8 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import trLocale from '@fullcalendar/core/locales/tr';
+import tr from "date-fns/locale/tr";
 import Modal from "react-modal";
 
 Modal.setAppElement("#root");
@@ -81,7 +83,6 @@ const CalendarPage = ({
       start: `${date}T${startTime}`,
       end: `${date}T${endTime}`,
     };
-    // setEvents([...events, newEventObject]);
     setNewEvent({
       user: "",
       title: "",
@@ -182,6 +183,7 @@ const CalendarPage = ({
         eventClick={handleEventClick}
         eventChange={handleEventChange}
         height="auto"
+        locale={trLocale} 
       />
       <Modal
         isOpen={modalIsOpen}
@@ -249,6 +251,7 @@ const CalendarPage = ({
                   value={newEvent.date}
                   onChange={handleInputChange}
                   required
+                  locale={tr}
                   className="focus focus focus w-full rounded-md border px-3 py-2"
                 />
               </div>

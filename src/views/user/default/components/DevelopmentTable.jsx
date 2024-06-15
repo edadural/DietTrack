@@ -7,8 +7,16 @@ import {
 } from "react-table";
 import Card from "components/card";
 
-const DevelopmentTable = ({ columnsData, tableData }) => {
-  const columns = useMemo(() => columnsData, [columnsData]);
+const DevelopmentTable = ({ tableData }) => {
+  const columns = useMemo(
+    () => [
+      { Header: "Ağırlık", accessor: "agirlik" },
+      { Header: "Yağ", accessor: "yag" },
+      { Header: "Yağsız", accessor: "yagsiz" },
+      { Header: "Sıvı", accessor: "sivi" },
+    ],
+    []
+  );
 
   const data = useMemo(() => tableData.slice(-3).reverse(), [tableData]);
 
@@ -61,9 +69,27 @@ const DevelopmentTable = ({ columnsData, tableData }) => {
           </thead>
           {data.length > 0 ? (
             <tbody {...getTableBodyProps()}>
-              {page.map((row, index) => {
+              {page.map((row, rowIndex) => {
                 prepareRow(row);
-                return <TableRow key={index} row={row} />;
+                const { key, ...rowProps } = row.getRowProps();
+                return (
+                  <tr className="border" key={key} {...rowProps}>
+                    {row.cells.map((cell, cellIndex) => {
+                      const { key, ...cellProps } = cell.getCellProps();
+                      return (
+                        <td
+                          key={key}
+                          {...cellProps}
+                          className="border pb-3 pt-[14px] text-[14px]"
+                        >
+                          <p className="text-sm font-bold text-navy-700 dark:text-white">
+                            {cell.value}
+                          </p>
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
               })}
             </tbody>
           ) : (
@@ -81,32 +107,6 @@ const DevelopmentTable = ({ columnsData, tableData }) => {
         </table>
       </div>
     </Card>
-  );
-};
-
-const TableRow = ({ row }) => {
-  return (
-    <tr className="border" {...row.getRowProps()}>
-      {row.cells.map((cell, index) => (
-        <TableCell key={index} cell={cell} />
-      ))}
-    </tr>
-  );
-};
-
-const TableCell = ({ cell }) => {
-  const renderContent = () => {
-    return (
-      <p className="text-sm font-bold text-navy-700 dark:text-white">
-        {cell.value}
-      </p>
-    );
-  };
-
-  return (
-    <td {...cell.getCellProps()} className="border pb-3 pt-[14px] text-[14px]">
-      {renderContent()}
-    </td>
   );
 };
 

@@ -2,7 +2,6 @@ import TotalSpent from "./components/TotalSpent";
 import PieChartCard from "./components/PieChartCard";
 import BodyMassIndex from "./components/BodyMassIndex";
 import DevelopmentTable from "./components/DevelopmentTable";
-import { columnsDataDevelopment } from "./variables/columnsData";
 import { useEffect, useState } from "react";
 import { appAxios } from "helper/appAxios";
 import MiniCalendar from "components/calendar/MiniCalendarUser";
@@ -69,7 +68,6 @@ const Dashboard = () => {
         <PieChartCard beslenmes={beslenmes} />
         <div className="col-span-3">
           <DevelopmentTable
-            columnsData={columnsDataDevelopment}
             tableData={tableDataDevelopment}
           />
         </div>

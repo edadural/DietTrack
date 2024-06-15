@@ -28,13 +28,11 @@ export default function SignIn() {
 
   return (
     <div className="mb-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
-      {/* Sign in section */}
       <div className="mt-[10vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
         <h4 className="mb-5 text-4xl font-bold text-navy-700 dark:text-white text-center">
           Giriş Yap
         </h4>
         <form onSubmit={handleSubmit}>
-          {/* username */}
           <InputField
             variant="auth"
             extra="mb-3"
@@ -44,8 +42,6 @@ export default function SignIn() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-
-          {/* Password */}
           <InputField
             variant="auth"
             extra="mb-3"
@@ -55,7 +51,6 @@ export default function SignIn() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          {/* Checkbox */}
           <div className="mb-4 flex items-center justify-between px-2">
             <div className="flex items-center">
               <Checkbox />

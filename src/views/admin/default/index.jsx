@@ -3,7 +3,6 @@ import { MdBarChart, MdDashboard } from "react-icons/md";
 import Widget from "components/widget/Widget";
 import ClientNotes from "./components/ClientNotes";
 import MiniCalendar from "components/calendar/MiniCalendar";
-import PieChartCard from "./components/PieChartCard";
 import RecentAppointments from "components/recent/RecentAppointments";
 import { useEffect, useState } from "react";
 import { appAxios } from "helper/appAxios";

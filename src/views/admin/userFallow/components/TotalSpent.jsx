@@ -3,7 +3,7 @@ import Card from "components/card";
 import { lineChartOptionsTotalSpent } from "variables/charts";
 import LineChart from "components/charts/LineChart";
 
-const TotalSpent = ({ selectedClient, table }) => {
+const TotalSpent = ({ table }) => {
   // console.log("sele111", table);
 
   const lineChartDataTotalSpent = [
@@ -38,7 +38,7 @@ const TotalSpent = ({ selectedClient, table }) => {
 
   return (
     <Card extra="!p-[20px] text-center">
-      <div className="flex h-full w-full flex-row justify-between sm:flex-wrap lg:flex-nowrap 2xl:overflow-hidden">
+      <div className="flex pb-10 h-full w-full flex-row justify-between sm:flex-wrap lg:flex-nowrap">
         <div className="h-full w-full">
           <LineChart
             options={{

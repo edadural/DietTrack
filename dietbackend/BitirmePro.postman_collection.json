@@ -1,0 +1,619 @@
+{
+	"info": {
+		"_postman_id": "1a5bbda7-8239-43bf-94ac-7ce9d19659fd",
+		"name": "BitirmePro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "17771259"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "admin login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5001/api/auth/admin-login"
+					},
+					"response": []
+				},
+				{
+					"name": "user login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5001/api/auth/user-login"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "kullanıcı getir",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlzX2FkbWluIjp0cnVlLCJpYXQiOjE3MTY2Mjg3ODAsImV4cCI6MTcxNjYzMjM4MH0.3Zz_yqicTW_PcKkEsaITARnfOQevaBZKgm9JZrmf3fI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\":null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/user/user-get"
+							},
+							"response": []
+						},
+						{
+							"name": "kullanıcı ekle",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlzX2FkbWluIjp0cnVlLCJpYXQiOjE3MTY2Mjg3ODAsImV4cCI6MTcxNjYzMjM4MH0.3Zz_yqicTW_PcKkEsaITARnfOQevaBZKgm9JZrmf3fI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"user\",\r\n    \"name\":\"\",\r\n    \"surname\":\"\",\r\n    \"password\":\"12345\",\r\n    \"mail\":\"\",\r\n    \"phone\":\"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/user/user-add"
+							},
+							"response": []
+						},
+						{
+							"name": "kullanıcı güncelle",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlzX2FkbWluIjp0cnVlLCJpYXQiOjE3MTY2Mjg3ODAsImV4cCI6MTcxNjYzMjM4MH0.3Zz_yqicTW_PcKkEsaITARnfOQevaBZKgm9JZrmf3fI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\":1,\r\n    \"username\":\"user2\",\r\n    \"name\":\"\",\r\n    \"surname\":\"\",\r\n    \"mail\":\"\",\r\n    \"phone\":\"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/user/user-update"
+							},
+							"response": []
+						},
+						{
+							"name": "kullanıcı şifre güncelle",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlzX2FkbWluIjp0cnVlLCJpYXQiOjE3MTY2Mjg3ODAsImV4cCI6MTcxNjYzMjM4MH0.3Zz_yqicTW_PcKkEsaITARnfOQevaBZKgm9JZrmf3fI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\":2,\r\n    \"password\":\"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/user/user-password-update"
+							},
+							"response": []
+						},
+						{
+							"name": "kullanıcı silme",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlzX2FkbWluIjp0cnVlLCJpYXQiOjE3MTY2Mjg3ODAsImV4cCI6MTcxNjYzMjM4MH0.3Zz_yqicTW_PcKkEsaITARnfOQevaBZKgm9JZrmf3fI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/user/user-delete"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Tablo",
+					"item": [
+						{
+							"name": "home getir",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlzX2FkbWluIjp0cnVlLCJpYXQiOjE3MTY2NTI3NDQsImV4cCI6MTcxNjY1NjM0NH0.dgpudTIlZGLuU0QSoyUigv18ojZNNvrymEhX4NVtVKY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"home_id\":0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/home/home-get"
+							},
+							"response": []
+						},
+						{
+							"name": "home ekle",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlzX2FkbWluIjp0cnVlLCJpYXQiOjE3MTY2NTI3NDQsImV4cCI6MTcxNjY1NjM0NH0.dgpudTIlZGLuU0QSoyUigv18ojZNNvrymEhX4NVtVKY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\":2,\r\n    \"olcum_tarihi\":\"2024-05-25 00:00:00\",\r\n    \"agirlik\":5.0,\r\n    \"yagsiz\":4.0,\r\n    \"sivi\":0.0,\r\n    \"yag\":0.0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/home/home-add"
+							},
+							"response": []
+						},
+						{
+							"name": "home güncelle",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlzX2FkbWluIjp0cnVlLCJpYXQiOjE3MTY2NTI3NDQsImV4cCI6MTcxNjY1NjM0NH0.dgpudTIlZGLuU0QSoyUigv18ojZNNvrymEhX4NVtVKY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"home_id\":1,\r\n    \"user_id\":2,\r\n    \"olcum_tarihi\":\"2024-05-27 00:00:00\",\r\n    \"agirlik\":5.0,\r\n    \"yagsiz\":5.0,\r\n    \"sivi\":5.0,\r\n    \"yag\":5.0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/home/home-update"
+							},
+							"response": []
+						},
+						{
+							"name": "home sil",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlzX2FkbWluIjp0cnVlLCJpYXQiOjE3MTY2NTI3NDQsImV4cCI6MTcxNjY1NjM0NH0.dgpudTIlZGLuU0QSoyUigv18ojZNNvrymEhX4NVtVKY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"home_id\":3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/home/home-delete"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Note",
+					"item": [
+						{
+							"name": "not getir",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlzX2FkbWluIjp0cnVlLCJpYXQiOjE3MTY4Mjg3NzEsImV4cCI6MTcxNjgzMjM3MX0.BDhMpX49nun4rXrzQEMrMApUGx7MEsJeXKJTd_n-cXI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"note_id\" :2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/note/note-get"
+							},
+							"response": []
+						},
+						{
+							"name": "not ekle",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlzX2FkbWluIjp0cnVlLCJpYXQiOjE3MTY4Mjg3NzEsImV4cCI6MTcxNjgzMjM3MX0.BDhMpX49nun4rXrzQEMrMApUGx7MEsJeXKJTd_n-cXI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\" : 3, \r\n    \"tarih\" : \"2024-05-27 00:00:00\", \r\n    \"note\" : \"asdşlkjas\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/note/note-add"
+							},
+							"response": []
+						},
+						{
+							"name": "not güncelle",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlzX2FkbWluIjp0cnVlLCJpYXQiOjE3MTY4Mjg3NzEsImV4cCI6MTcxNjgzMjM3MX0.BDhMpX49nun4rXrzQEMrMApUGx7MEsJeXKJTd_n-cXI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"note_id\":2,\r\n    \"user_id\" : 3, \r\n    \"tarih\" : \"2024-05-28 00:00:00\", \r\n    \"note\" : \"asdşlkjas\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/note/note-update"
+							},
+							"response": []
+						},
+						{
+							"name": "not sil",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlzX2FkbWluIjp0cnVlLCJpYXQiOjE3MTY4Mjg3NzEsImV4cCI6MTcxNjgzMjM3MX0.BDhMpX49nun4rXrzQEMrMApUGx7MEsJeXKJTd_n-cXI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"note_id\":3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/note/note-delete"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Randevu",
+					"item": [
+						{
+							"name": "randevu getir",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlzX2FkbWluIjp0cnVlLCJpYXQiOjE3MTY2Mzc4NzMsImV4cCI6MTcxNjY0MTQ3M30._nPzo6yPE9_BgXslBwiuBajSdim2dEVjsUMdQBye-WA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"randevu_id\":0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/randevu/randevu-get"
+							},
+							"response": []
+						},
+						{
+							"name": "randevu ekle",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlzX2FkbWluIjp0cnVlLCJpYXQiOjE3MTY2Mzc4NzMsImV4cCI6MTcxNjY0MTQ3M30._nPzo6yPE9_BgXslBwiuBajSdim2dEVjsUMdQBye-WA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"baslik\":\"baslik 4\",\r\n    \"basl_tarih\":\"2024-05-25 15:00:00\",\r\n    \"bitis_tarih\":\"2024-06-01 10:00:00\",\r\n    \"user_id\":2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/randevu/randevu-add"
+							},
+							"response": []
+						},
+						{
+							"name": "randevu güncelle",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlzX2FkbWluIjp0cnVlLCJpYXQiOjE3MTY2Mzc4NzMsImV4cCI6MTcxNjY0MTQ3M30._nPzo6yPE9_BgXslBwiuBajSdim2dEVjsUMdQBye-WA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"randevu_id\":2,\r\n    \"baslik\":\"testtt\",\r\n    \"basl_tarih\":\"2024-06-25 15:00:00\",\r\n    \"bitis_tarih\":\"2024-06-26 10:00:00\",\r\n    \"user_id\":2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/randevu/randevu-update"
+							},
+							"response": []
+						},
+						{
+							"name": "randevu sil",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlzX2FkbWluIjp0cnVlLCJpYXQiOjE3MTY2Mzc4NzMsImV4cCI6MTcxNjY0MTQ3M30._nPzo6yPE9_BgXslBwiuBajSdim2dEVjsUMdQBye-WA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"randevu_id\":1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/randevu/randevu-delete"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Beslenme",
+					"item": [
+						{
+							"name": "beslenme getir",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlzX2FkbWluIjp0cnVlLCJpYXQiOjE3MTY4NDY2ODIsImV4cCI6MTcxNjg1MDI4Mn0.sUAtcmEbQghg1MPUBXwmAX7LAy1d6nyp7kIyKHw6tJs",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"beslenme_id\" :null,\r\n    \"user_id\":3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/beslenme/beslenme-get"
+							},
+							"response": []
+						},
+						{
+							"name": "beslenme ekle",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlzX2FkbWluIjp0cnVlLCJpYXQiOjE3MTY4NDY2ODIsImV4cCI6MTcxNjg1MDI4Mn0.sUAtcmEbQghg1MPUBXwmAX7LAy1d6nyp7kIyKHw6tJs",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\" : 2, \r\n    \"beslenme\" : [\r\n        {\r\n            \"kahvalti\":\"1\",\r\n            \"ogle\":\"1\",\r\n            \"aksam\":\"1\",\r\n            \"atistirma\":\"1\",\r\n            \"tarih\":\"2024-05-20 00:00:00\"\r\n        },\r\n        {\r\n            \"kahvalti\":\"2\",\r\n            \"ogle\":\"2\",\r\n            \"aksam\":\"2\",\r\n            \"atistirma\":\"2\",\r\n            \"tarih\":\"2024-05-21 00:00:00\"\r\n        },\r\n        {\r\n            \"kahvalti\":\"3\",\r\n            \"ogle\":\"3\",\r\n            \"aksam\":\"3\",\r\n            \"atistirma\":\"3\",\r\n            \"tarih\":\"2024-05-22 00:00:00\"\r\n        },\r\n        {\r\n            \"kahvalti\":\"4\",\r\n            \"ogle\":\"4\",\r\n            \"aksam\":\"4\",\r\n            \"atistirma\":\"4\",\r\n            \"tarih\":\"2024-05-23 00:00:00\"\r\n        },\r\n        {\r\n            \"kahvalti\":\"5\",\r\n            \"ogle\":\"5\",\r\n            \"aksam\":\"5\",\r\n            \"atistirma\":\"5\",\r\n            \"tarih\":\"2024-05-24 00:00:00\"\r\n        },\r\n        {\r\n            \"kahvalti\":\"6\",\r\n            \"ogle\":\"6\",\r\n            \"aksam\":\"6\",\r\n            \"atistirma\":\"6\",\r\n            \"tarih\":\"2024-05-25 00:00:00\"\r\n        },\r\n        {\r\n            \"kahvalti\":\"7\",\r\n            \"ogle\":\"7\",\r\n            \"aksam\":\"7\",\r\n            \"atistirma\":\"7\",\r\n            \"tarih\":\"2024-05-26 00:00:00\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/beslenme/beslenme-add"
+							},
+							"response": []
+						},
+						{
+							"name": "beslenme güncelle",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlzX2FkbWluIjp0cnVlLCJpYXQiOjE3MTY4NDY2ODIsImV4cCI6MTcxNjg1MDI4Mn0.sUAtcmEbQghg1MPUBXwmAX7LAy1d6nyp7kIyKHw6tJs",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": 2,\r\n    \"beslenme\": [\r\n        {\r\n            \"beslenme_id\": 8,\r\n            \"kahvalti\": \"1-g\",\r\n            \"ogle\": \"1-g\",\r\n            \"aksam\": \"1-g\",\r\n            \"atistirma\": \"1\"\r\n        },\r\n        {\r\n            \"beslenme_id\": 9,\r\n            \"kahvalti\": \"2-g\",\r\n            \"ogle\": \"2-g\",\r\n            \"aksam\": \"2-g\",\r\n            \"atistirma\": \"2-g\"\r\n        },\r\n        {\r\n            \"beslenme_id\": 10,\r\n            \"kahvalti\": \"3-g\",\r\n            \"ogle\": \"3-g\",\r\n            \"aksam\": \"3-g\",\r\n            \"atistirma\": \"3-g\"\r\n        },\r\n        {\r\n            \"beslenme_id\": 11,\r\n            \"kahvalti\": \"4\",\r\n            \"ogle\": \"4\",\r\n            \"aksam\": \"4\",\r\n            \"atistirma\": \"4\"\r\n        },\r\n        {\r\n            \"beslenme_id\": 12,\r\n            \"kahvalti\": \"5\",\r\n            \"ogle\": \"5\",\r\n            \"aksam\": \"5\",\r\n            \"atistirma\": \"5\"\r\n        },\r\n        {\r\n            \"beslenme_id\": 13,\r\n            \"kahvalti\": \"6\",\r\n            \"ogle\": \"6\",\r\n            \"aksam\": \"6\",\r\n            \"atistirma\": \"6\"\r\n        },\r\n        {\r\n            \"beslenme_id\": 14,\r\n            \"kahvalti\": \"7\",\r\n            \"ogle\": \"7\",\r\n            \"aksam\": \"7\",\r\n            \"atistirma\": \"7\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/beslenme/beslenme-update"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Beslenme",
+					"item": [
+						{
+							"name": "user beslenme getir",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJlZGFkdXJhbCIsImlzX3VzZXIiOnRydWUsImlhdCI6MTcxNjg0ODM4NCwiZXhwIjoxNzE2ODUxOTg0fQ.13mV0Gk9Tt0aazjtbvOIRajuTqkmvMsRJcvbH0AoYQo",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/beslenme/user-beslenme-get"
+							},
+							"response": []
+						},
+						{
+							"name": "user beslenme güncelle",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJlZGFkdXJhbCIsImlzX3VzZXIiOnRydWUsImlhdCI6MTcxNjg0ODYxNiwiZXhwIjoxNzE2ODUyMjE2fQ.DMlXwE_H74sBQQ3ibdxgTgTgwDTI1Gq9X7pJscJ_EzE",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": 2,\r\n    \"beslenme\": [\r\n        {\r\n            \"beslenme_id\": 8,\r\n            \"kahvalti_tik\": true,\r\n            \"ogle_tik\": true,\r\n            \"aksam_tik\": true\r\n        },\r\n        {\r\n            \"beslenme_id\": 9,\r\n            \"kahvalti\": false,\r\n            \"ogle\": false,\r\n            \"aksam\": false\r\n        },\r\n        {\r\n            \"beslenme_id\": 10,\r\n            \"kahvalti\": \"3-g\",\r\n            \"ogle\": \"3-g\",\r\n            \"aksam\": \"3-g\"\r\n        },\r\n        {\r\n            \"beslenme_id\": 11,\r\n            \"kahvalti\": \"4\",\r\n            \"ogle\": \"4\",\r\n            \"aksam\": \"4\"\r\n        },\r\n        {\r\n            \"beslenme_id\": 12,\r\n            \"kahvalti\": false,\r\n            \"ogle\": false,\r\n            \"aksam\": false\r\n        },\r\n        {\r\n            \"beslenme_id\": 13,\r\n            \"kahvalti\": false,\r\n            \"ogle\": false,\r\n            \"aksam\": false\r\n        },\r\n        {\r\n            \"beslenme_id\": 14,\r\n            \"kahvalti\": false,\r\n            \"ogle\": false,\r\n            \"aksam\": false\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5001/api/beslenme/user-beslenme-update"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
